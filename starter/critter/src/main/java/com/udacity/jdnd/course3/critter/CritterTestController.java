@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
  * your project work.
  */
 @RestController
-public class CritterController {
+public class CritterTestController {
 
     @GetMapping("/test")
     public String test(){
