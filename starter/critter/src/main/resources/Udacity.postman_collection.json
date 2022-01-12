@@ -27,12 +27,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8082/user/customer",
+					"raw": "http://localhost:8311/user/customer",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8082",
+					"port": "8311",
 					"path": [
 						"user",
 						"customer"
@@ -63,12 +63,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8082/pet",
+					"raw": "http://localhost:8311/pet",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8082",
+					"port": "8311",
 					"path": [
 						"pet"
 					]
@@ -98,12 +98,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8082/user/employee",
+					"raw": "http://localhost:8311/user/employee",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8082",
+					"port": "8311",
 					"path": [
 						"user",
 						"employee"
@@ -134,12 +134,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8082/user/employee/1",
+					"raw": "http://localhost:8311/user/employee/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8082",
+					"port": "8311",
 					"path": [
 						"user",
 						"employee",
@@ -174,12 +174,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8082/user/employee/availability",
+					"raw": "http://localhost:8311/user/employee/availability",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8082",
+					"port": "8311",
 					"path": [
 						"user",
 						"employee",
@@ -211,12 +211,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8082/user/employee/1",
+					"raw": "http://localhost:8311/user/employee/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8082",
+					"port": "8311",
 					"path": [
 						"user",
 						"employee",
@@ -251,12 +251,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8082/schedule/pet/1",
+					"raw": "http://localhost:8311/schedule/pet/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8082",
+					"port": "8311",
 					"path": [
 						"schedule",
 						"pet",
@@ -291,12 +291,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8082/schedule/employee/2",
+					"raw": "http://localhost:8311/schedule/employee/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8082",
+					"port": "8311",
 					"path": [
 						"schedule",
 						"employee",
@@ -331,12 +331,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8082/schedule/employee/2",
+					"raw": "http://localhost:8311/schedule/employee/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8082",
+					"port": "8311",
 					"path": [
 						"schedule",
 						"employee",
@@ -371,12 +371,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8082/user/customer",
+					"raw": "http://localhost:8311/user/customer",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8082",
+					"port": "8311",
 					"path": [
 						"user",
 						"customer"
@@ -410,12 +410,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8082/user/customer",
+					"raw": "http://localhost:8311/user/customer",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8082",
+					"port": "8311",
 					"path": [
 						"user",
 						"customer"
@@ -449,12 +449,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8082/pet/owner/1",
+					"raw": "http://localhost:8311/pet/owner/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8082",
+					"port": "8311",
 					"path": [
 						"pet",
 						"owner",
@@ -489,12 +489,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8082/user/customer/pet/1",
+					"raw": "http://localhost:8311/user/customer/pet/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8082",
+					"port": "8311",
 					"path": [
 						"user",
 						"customer",

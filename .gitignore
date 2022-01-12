@@ -1,5 +1,6 @@
 HELP.md
 target/
+*.bat
 
 ### STS ###
 .apt_generated
