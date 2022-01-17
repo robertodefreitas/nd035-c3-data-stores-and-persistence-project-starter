@@ -2,7 +2,7 @@ package com.udacity.jdnd.course3.critter.model.dao;
 
 import java.time.LocalDate;
 
-import com.udacity.jdnd.course3.critter.model.PetType;
+import com.udacity.jdnd.course3.critter.model.list.PetType;
 
 /**
  * Represents the form that pet request and response data takes. Does not map

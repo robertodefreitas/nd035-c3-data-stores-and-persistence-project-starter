@@ -3,7 +3,7 @@ package com.udacity.jdnd.course3.critter.model.dao.user;
 import java.time.LocalDate;
 import java.util.Set;
 
-import com.udacity.jdnd.course3.critter.model.EmployeeSkill;
+import com.udacity.jdnd.course3.critter.model.list.EmployeeSkill;
 
 /**
  * Represents a request to find available employees by skills. Does not map

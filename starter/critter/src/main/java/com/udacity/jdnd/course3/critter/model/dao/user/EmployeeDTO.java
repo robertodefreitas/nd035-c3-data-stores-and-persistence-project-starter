@@ -3,7 +3,7 @@ package com.udacity.jdnd.course3.critter.model.dao.user;
 import java.time.DayOfWeek;
 import java.util.Set;
 
-import com.udacity.jdnd.course3.critter.model.EmployeeSkill;
+import com.udacity.jdnd.course3.critter.model.list.EmployeeSkill;
 
 /**
  * Represents the form that employee request and response data takes. Does not map
