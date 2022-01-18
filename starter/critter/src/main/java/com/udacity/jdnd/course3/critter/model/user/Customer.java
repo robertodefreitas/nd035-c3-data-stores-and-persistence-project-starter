@@ -1,4 +1,4 @@
-package com.udacity.jdnd.course3.critter.model;
+package com.udacity.jdnd.course3.critter.model.user;
 
 import java.util.List;
 
@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.Nationalized;
+import com.udacity.jdnd.course3.critter.model.Pet;
 
 @Entity
 public class Customer {

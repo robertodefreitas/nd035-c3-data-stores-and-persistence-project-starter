@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import com.udacity.jdnd.course3.critter.model.dao.PetDTO;
+import com.udacity.jdnd.course3.critter.dao.PetDTO;
 
 /**
  * Handles web requests related to Pets.

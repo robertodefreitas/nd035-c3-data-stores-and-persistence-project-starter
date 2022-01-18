@@ -1,4 +1,4 @@
-package com.udacity.jdnd.course3.critter.model.list;
+package com.udacity.jdnd.course3.critter.list;
 
 /**
  * A example list of employee skills that could be included on an employee or a schedule request.

@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import com.udacity.jdnd.course3.critter.model.dao.ScheduleDTO;
+import com.udacity.jdnd.course3.critter.dao.ScheduleDTO;
 
 /**
  * Handles web requests related to Schedules.

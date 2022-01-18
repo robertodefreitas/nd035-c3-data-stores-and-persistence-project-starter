@@ -1,8 +1,8 @@
-package com.udacity.jdnd.course3.critter.model.dao;
+package com.udacity.jdnd.course3.critter.dao;
 
 import java.time.LocalDate;
 
-import com.udacity.jdnd.course3.critter.model.list.PetType;
+import com.udacity.jdnd.course3.critter.list.PetType;
 
 /**
  * Represents the form that pet request and response data takes. Does not map

@@ -17,13 +17,13 @@ import com.google.common.collect.Sets;
 import com.udacity.jdnd.course3.critter.controller.PetController;
 import com.udacity.jdnd.course3.critter.controller.ScheduleController;
 import com.udacity.jdnd.course3.critter.controller.UserController;
-import com.udacity.jdnd.course3.critter.model.list.EmployeeSkill;
-import com.udacity.jdnd.course3.critter.model.list.PetType;
-import com.udacity.jdnd.course3.critter.model.dao.user.EmployeeDTO;
-import com.udacity.jdnd.course3.critter.model.dao.PetDTO;
-import com.udacity.jdnd.course3.critter.model.dao.ScheduleDTO;
-import com.udacity.jdnd.course3.critter.model.dao.user.CustomerDTO;
-import com.udacity.jdnd.course3.critter.model.dao.user.EmployeeRequestDTO;
+import com.udacity.jdnd.course3.critter.list.EmployeeSkill;
+import com.udacity.jdnd.course3.critter.list.PetType;
+import com.udacity.jdnd.course3.critter.dao.user.EmployeeDTO;
+import com.udacity.jdnd.course3.critter.dao.PetDTO;
+import com.udacity.jdnd.course3.critter.dao.ScheduleDTO;
+import com.udacity.jdnd.course3.critter.dao.user.CustomerDTO;
+import com.udacity.jdnd.course3.critter.dao.user.EmployeeRequestDTO;
 
 /**
  * This is a set of functional tests to validate the basic capabilities desired for this application.
