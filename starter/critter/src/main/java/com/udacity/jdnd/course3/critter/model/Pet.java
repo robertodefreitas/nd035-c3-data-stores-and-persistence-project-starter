@@ -3,6 +3,8 @@ package com.udacity.jdnd.course3.critter.model;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -24,8 +26,8 @@ public class Pet {
     @Nationalized
     private String name;
 
-    @JsonView(Views.Public.class)
-    @Nationalized
+    // https://www.baeldung.com/jpa-persisting-enums-in-jpa
+    @Enumerated(EnumType.STRING)
     private PetType type;
 
     private LocalDate birthDate;
@@ -40,6 +42,14 @@ public class Pet {
     @ManyToOne
     @JoinColumn(name = "id_customer")
     private Customer ownerId;
+
+    // used reference: Project 3, Lesson 4 (Part 16)
+    //don't retrieve schedule if we don't need it
+    // see: private List<Pet> petIds; in Class Schedule
+    // this create a column on the table pet with the name id_schedule
+    @ManyToOne
+    @JoinColumn(name = "id_schedule")
+    private Schedule scheduleId;
 
 
     /* getters and setters */

@@ -15,7 +15,10 @@ public class ScheduleDTO {
     private List<Long> employeeIds;
     private List<Long> petIds;
     private LocalDate date;
+    // https://docs.oracle.com/javase/8/docs/api/java/util/Set.html
+    // https://www.tutorialspoint.com/java/java_set_interface.htm
     private Set<EmployeeSkill> activities;
+
 
     public long getId(){
         return id;

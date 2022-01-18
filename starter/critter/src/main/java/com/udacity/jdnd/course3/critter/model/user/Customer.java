@@ -11,7 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.Nationalized;
+import com.fasterxml.jackson.annotation.JsonView;
 import com.udacity.jdnd.course3.critter.model.Pet;
+import com.udacity.jdnd.course3.critter.model.Views;
 
 @Entity
 public class Customer {
@@ -19,6 +21,7 @@ public class Customer {
     @GeneratedValue
     private Long id;
 
+    @JsonView(Views.Public.class)
     @Nationalized
     private String name;
 

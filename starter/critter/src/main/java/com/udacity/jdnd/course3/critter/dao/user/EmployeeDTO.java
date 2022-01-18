@@ -12,8 +12,11 @@ import com.udacity.jdnd.course3.critter.list.EmployeeSkill;
 public class EmployeeDTO {
     private long id;
     private String name;
+    // https://docs.oracle.com/javase/8/docs/api/java/util/Set.html
+    // https://www.tutorialspoint.com/java/java_set_interface.htm
     private Set<EmployeeSkill> skills;
     private Set<DayOfWeek> daysAvailable;
+
 
     public long getId() {
         return id;
