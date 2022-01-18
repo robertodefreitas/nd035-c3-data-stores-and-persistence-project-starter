@@ -21,9 +21,8 @@ public class UserController {
 
     /**
      * POST /user/customer
-     * BODY:
      */
-    /*
+    /* BODY
     {
         "name": "Alex",
             "phoneNumber": "1234567890"
