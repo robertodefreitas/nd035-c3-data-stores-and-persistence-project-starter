@@ -19,6 +19,16 @@ import java.util.Set;
 @RequestMapping("/user")
 public class UserController {
 
+    /**
+     * POST /user/customer
+     * BODY:
+     */
+    /*
+    {
+        "name": "Alex",
+            "phoneNumber": "1234567890"
+    }
+    */
     @PostMapping("/customer")
     public CustomerDTO saveCustomer(@RequestBody CustomerDTO customerDTO){
         throw new UnsupportedOperationException();
