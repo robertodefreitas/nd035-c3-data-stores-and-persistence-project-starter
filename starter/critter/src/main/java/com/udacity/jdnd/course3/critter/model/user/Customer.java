@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -42,13 +43,22 @@ public class Customer {
     private List<Pet> petIds;
 
 
-    /* getters and setters */
+    /* constructor to push the data from the file CustomerDTO.java, used by UserController */
 
-    public long getId() {
-        return id;
+    public Customer(String name, String phoneNumber, String notes) {
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.notes = notes;
     }
 
-    public void setId(long id) {
+
+    /* getters and setters */
+
+    // java.lang.NullPointerException: Cannot invoke "java.lang.Long.longValue()" because "this.id" is null
+    // intellijIDEA created the methode with long instead of Long
+    public Long getId() { return id; }
+
+    public void setId(Long id) {
         this.id = id;
     }
 

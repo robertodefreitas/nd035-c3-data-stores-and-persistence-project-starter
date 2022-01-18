@@ -13,6 +13,23 @@ public class CustomerDTO {
     private String notes;
     private List<Long> petIds;
 
+
+    /* constructor */
+
+    // because of the methode convertCustomer2CustomerDTO into CustomerService
+    public CustomerDTO(){}
+
+    // because of the methode convertCustomer2CustomerDTOelegant into CustomerService
+    public CustomerDTO(long id, String name, String phoneNumber, String notes) {
+        this.id = id;
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.notes = notes;
+    }
+
+
+    /* getters and setters */
+
     public long getId() {
         return id;
     }
