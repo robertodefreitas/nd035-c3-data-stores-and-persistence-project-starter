@@ -33,6 +33,7 @@ public class Pet {
     @Nationalized
     private String notes;
 
+    // used reference: Project 3, Lesson 4 (Part 16)
     //don't retrieve customer if we don't need it
     // see: private List<Pet> petIds; in Class Customer
     // this create a column on the table pet with the name id_customer

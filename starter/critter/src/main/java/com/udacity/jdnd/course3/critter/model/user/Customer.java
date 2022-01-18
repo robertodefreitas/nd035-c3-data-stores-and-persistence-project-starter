@@ -29,6 +29,7 @@ public class Customer {
     @Nationalized
     private String notes;
 
+    // used reference: Project 3, Lesson 4 (Part 16)
     // added CascadeType.REMOVE to automatically clear any associated Pet when removed
     // see: private Customer ownerId; in Class Pet
     // this doesn't create a column on the table customer
