@@ -9,6 +9,14 @@ import com.udacity.jdnd.course3.critter.list.EmployeeSkill;
  * Represents the form that employee request and response data takes. Does not map
  * to the database directly.
  */
+/* POST BODY:raw JSON
+{
+  "name": "Hannah",
+  "skills": ["PETTING", "FEEDING"],
+  "daysAvailable": ["MONDAY", "FRIDAY", "SATURDAY"]
+}
+*/
+
 public class EmployeeDTO {
     private long id;
     private String name;
@@ -17,6 +25,25 @@ public class EmployeeDTO {
     private Set<EmployeeSkill> skills;
     private Set<DayOfWeek> daysAvailable;
 
+
+    /* constructor */
+
+    public EmployeeDTO(){}
+
+    public EmployeeDTO(String name, Set<EmployeeSkill> skills) {
+        this.name = name;
+        this.skills = skills;
+    }
+
+    public EmployeeDTO(long id, String name, Set<EmployeeSkill> skills, Set<DayOfWeek> daysAvailable) {
+        this.id = id;
+        this.name = name;
+        this.skills = skills;
+        this.daysAvailable = daysAvailable;
+    }
+
+
+    /* getters and setters */
 
     public long getId() {
         return id;

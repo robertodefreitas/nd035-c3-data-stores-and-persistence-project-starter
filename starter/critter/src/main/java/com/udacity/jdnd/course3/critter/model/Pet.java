@@ -26,6 +26,7 @@ public class Pet {
     @Nationalized
     private String name;
 
+    // only one value, also only a column is necessary
     // https://www.baeldung.com/jpa-persisting-enums-in-jpa
     @Enumerated(EnumType.STRING)
     private PetType type;

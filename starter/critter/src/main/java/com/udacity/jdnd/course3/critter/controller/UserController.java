@@ -1,11 +1,12 @@
 package com.udacity.jdnd.course3.critter.controller;
 
-import com.udacity.jdnd.course3.critter.CritterTestController;
 import com.udacity.jdnd.course3.critter.dao.user.CustomerDTO;
 import com.udacity.jdnd.course3.critter.dao.user.EmployeeDTO;
 import com.udacity.jdnd.course3.critter.dao.user.EmployeeRequestDTO;
 import com.udacity.jdnd.course3.critter.model.user.Customer;
+import com.udacity.jdnd.course3.critter.model.user.Employee;
 import com.udacity.jdnd.course3.critter.service.CustomerService;
+import com.udacity.jdnd.course3.critter.service.EmployeeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,10 @@ public class UserController {
     @Autowired
     private CustomerService customerService;
 
+    @Autowired
+    private EmployeeService employeeService;
+
+
     // this doesn't work, we work with "new className"
     //@Autowired
     //private Customer customer;
@@ -49,8 +54,12 @@ public class UserController {
         String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
         logger.info("[{}] POST /user/customer", methodeName);
 
-        // save (CrudRepository) needs an entity like Customer, CustomerDTO is not an entity
-        Customer customer = new Customer(customerDTO.getName(),customerDTO.getPhoneNumber(),customerDTO.getNotes());
+        // method save (CrudRepository) needs an entity like Customer, CustomerDTO is not an entity
+        Customer customer = new Customer(
+                customerDTO.getName(),
+                customerDTO.getPhoneNumber(),
+                customerDTO.getNotes()
+        );
 
         // we need to give the id to CustomerDTO
         // also change this methode from void to Long
@@ -75,28 +84,67 @@ public class UserController {
         return customerService.findAllCustomers();
     }
 
+
     @GetMapping("/customer/pet/{petId}")
     public CustomerDTO getOwnerByPet(@PathVariable long petId){
+
         throw new UnsupportedOperationException();
     }
 
+
+    /**
+     * POST /user/employee
+     */
+    /* BODY raw:JSON
+    {
+      "name": "Hannah",
+      "skills": ["PETTING", "FEEDING"],
+      "daysAvailable": ["MONDAY", "FRIDAY", "SATURDAY"]
+    }
+    */
     @PostMapping("/employee")
     public EmployeeDTO saveEmployee(@RequestBody EmployeeDTO employeeDTO) {
-        throw new UnsupportedOperationException();
+        String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
+        logger.info("[{}] POST /user/employee", methodeName);
+
+        // method save (CrudRepository) needs an entity like Employee.
+        // EmployeeDTO is not an entity
+        Employee employee = new Employee(
+                employeeDTO.getName(),
+                employeeDTO.getSkills(),
+                employeeDTO.getDaysAvailable()
+        );
+
+        Long idDTO = employeeService.save(employee);
+        employeeDTO.setId(idDTO);
+
+        return employeeDTO;
     }
 
+
     @PostMapping("/employee/{employeeId}")
-    public EmployeeDTO getEmployee(@PathVariable long employeeId) {
-        throw new UnsupportedOperationException();
+    public EmployeeDTO getEmployee(@PathVariable Long employeeId) {
+        String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
+        logger.info("[{}] POST /user/employee/{}", methodeName, employeeId);
+
+        return employeeService.findEmployeeById(employeeId);
     }
+
 
     @PutMapping("/employee/{employeeId}")
     public void setAvailability(@RequestBody Set<DayOfWeek> daysAvailable, @PathVariable long employeeId) {
+        String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
+        logger.info("[{}] PUT /user/employee/{}", methodeName, employeeId);
+
         throw new UnsupportedOperationException();
     }
 
+
     @GetMapping("/employee/availability")
     public List<EmployeeDTO> findEmployeesForService(@RequestBody EmployeeRequestDTO employeeDTO) {
+        String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
+        logger.info("[{}] GET /user/employee/availability", methodeName);
+
         throw new UnsupportedOperationException();
     }
 

@@ -9,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.udacity.jdnd.course3.critter.CritterTestController;
 import com.udacity.jdnd.course3.critter.dao.user.CustomerDTO;
 import com.udacity.jdnd.course3.critter.model.user.Customer;
 import com.udacity.jdnd.course3.critter.repository.CustomerRepository;

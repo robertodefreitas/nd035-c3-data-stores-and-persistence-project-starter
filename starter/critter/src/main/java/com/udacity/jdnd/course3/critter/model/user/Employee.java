@@ -3,13 +3,17 @@ package com.udacity.jdnd.course3.critter.model.user;
 import java.time.DayOfWeek;
 import java.util.Set;
 
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.Nationalized;
 import com.fasterxml.jackson.annotation.JsonView;
@@ -28,16 +32,32 @@ public class Employee {
     @Nationalized
     private String name;
 
-    // https://www.baeldung.com/jpa-persisting-enums-in-jpa
-    @Enumerated(EnumType.STRING)
-    //private Set<EmployeeSkill> skills;
-    private EmployeeSkill skills;
 
+    // extra table is nescessary, because of more skills value for the same employee
+    // know-how from project 3 lesson 2 (Part 11, Entity Relationships)
+    // https://stackoverflow.com/questions/15998824/mapping-setenum-using-elementcollection
+    @ElementCollection(targetClass = EmployeeSkill.class)
+    @JoinTable(name = "employee_skills", joinColumns = @JoinColumn(name = "id_employee"))
+    @Column(name ="employeeSkill", nullable = false)
     // https://www.baeldung.com/jpa-persisting-enums-in-jpa
     @Enumerated(EnumType.STRING)
-    // Attribute [com.udacity.jdnd.course3.critter.model.user.Employee.daysAvailable] was annotated as enumerated, but its java type is not an enum [java.util.Set]
-    //private Set<DayOfWeek> daysAvailable;
-    private DayOfWeek daysAvailable;
+    // https://stackoverflow.com/questions/44258541/illegal-attempt-to-map-a-non-collection-as-a-onetomany-manytomany-or-collec
+    private Set<EmployeeSkill> skills;
+    //private EmployeeSkill skills;
+
+
+    // extra table is nescessary, because of more day of week value for the same employee
+    // know-how from project 3 lesson 2 (Part 11, Entity Relationships)
+    // https://stackoverflow.com/questions/15998824/mapping-setenum-using-elementcollection
+    @ElementCollection(targetClass = DayOfWeek.class)
+    @JoinTable(name = "employee_dayofweek", joinColumns = @JoinColumn(name = "id_employee"))
+    @Column(name ="DayOfWeek", nullable = false)
+    // https://www.baeldung.com/jpa-persisting-enums-in-jpa
+    @Enumerated(EnumType.STRING)
+    // https://stackoverflow.com/questions/44258541/illegal-attempt-to-map-a-non-collection-as-a-onetomany-manytomany-or-collec
+    private Set<DayOfWeek> daysAvailable;
+    //private DayOfWeek daysAvailable;
+
 
     // used reference: Project 3, Lesson 4 (Part 16)
     //don't retrieve schedule if we don't need it
@@ -46,6 +66,29 @@ public class Employee {
     @ManyToOne
     @JoinColumn(name = "id_schedule")
     private Schedule scheduleId;
+
+
+    /* constructor */
+
+    /**
+     * ISSUE
+     *   c.u.j.c.c.controller.UserController      : [getAllCustomers] GET /user/customer
+     *   org.hibernate.InstantiationException: No default constructor for entity:  : com.udacity.jdnd.course3.critter.model.user.Customer
+     * SOLUTION
+     *   empty constructor s. below
+     * FYI
+     *   This Error was not available by the UnitTest: testCreateCustomer
+     */
+    public Employee(){}
+
+    /**
+     * constructor to push the data from the file CustomerDTO.java, used by UserController
+     */
+    public Employee(String name, Set<EmployeeSkill> skills, Set<DayOfWeek> daysOfWeek) {
+        this.name = name;
+        this.skills = skills;
+        this.daysAvailable = daysOfWeek;
+    }
 
 
     /* getters and setters */
@@ -66,19 +109,19 @@ public class Employee {
         this.name = name;
     }
 
-    public EmployeeSkill getSkills() {
+    public Set<EmployeeSkill> getSkills() {
         return skills;
     }
 
-    public void setSkills(EmployeeSkill skills) {
+    public void setSkills(Set<EmployeeSkill> skills) {
         this.skills = skills;
     }
 
-    public DayOfWeek getDaysAvailable() {
+    public Set<DayOfWeek> getDaysAvailable() {
         return daysAvailable;
     }
 
-    public void setDaysAvailable(DayOfWeek daysAvailable) {
+    public void setDaysAvailable(Set<DayOfWeek> daysAvailable) {
         this.daysAvailable = daysAvailable;
     }
 
@@ -89,4 +132,5 @@ public class Employee {
     public void setScheduleId(Schedule scheduleId) {
         this.scheduleId = scheduleId;
     }
+
 }

@@ -6,6 +6,14 @@ import java.util.List;
  * Represents the form that customer request and response data takes. Does not map
  * to the database directly.
  */
+/* POST BODY:raw JSON
+{
+  "name": "Aleex",
+  "phoneNumber": "1234567890",
+  "notes": "this is a note!"
+}
+*/
+
 public class CustomerDTO {
     private long id;
     private String name;
@@ -27,6 +35,13 @@ public class CustomerDTO {
         this.notes = notes;
     }
 
+    public CustomerDTO(long id, String name, String phoneNumber, String notes, List<Long> petIds) {
+        this.id = id;
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.notes = notes;
+        this.petIds = petIds;
+    }
 
     /* getters and setters */
 
