@@ -25,7 +25,7 @@ import java.util.Set;
 @RequestMapping("/user")
 public class UserController {
 
-    private static final Logger logger = LoggerFactory.getLogger(CritterTestController.class);
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
     private CustomerService customerService;
@@ -37,10 +37,11 @@ public class UserController {
     /**
      * POST /user/customer
      */
-    /* BODY
+    /* BODY raw:JSON
     {
-        "name": "Alex",
-            "phoneNumber": "1234567890"
+      "name": "Aleex",
+      "phoneNumber": "1234567890",
+      "notes": "this is a note!"
     }
     */
     @PostMapping("/customer")

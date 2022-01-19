@@ -17,7 +17,7 @@ import com.udacity.jdnd.course3.critter.repository.CustomerRepository;
 @Service
 public class CustomerService {
 
-    private static final Logger logger = LoggerFactory.getLogger(CritterTestController.class);
+    private static final Logger logger = LoggerFactory.getLogger(CustomerService.class);
 
     @Autowired
     private CustomerRepository customerRepository;
