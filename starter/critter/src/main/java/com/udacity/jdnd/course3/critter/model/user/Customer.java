@@ -43,8 +43,22 @@ public class Customer {
     private List<Pet> petIds;
 
 
-    /* constructor to push the data from the file CustomerDTO.java, used by UserController */
+    /* constructor */
 
+    /**
+     * ISSUE
+     *   c.u.j.c.c.controller.UserController      : [getAllCustomers] GET /user/customer
+     *   org.hibernate.InstantiationException: No default constructor for entity:  : com.udacity.jdnd.course3.critter.model.user.Customer
+     * SOLUTION
+     *   empty constructor s. below
+     * FYI
+     *   This Error was not available by the UnitTest: testCreateCustomer
+     */
+    public Customer(){}
+
+    /**
+     * constructor to push the data from the file CustomerDTO.java, used by UserController
+     */
     public Customer(String name, String phoneNumber, String notes) {
         this.name = name;
         this.phoneNumber = phoneNumber;

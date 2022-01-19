@@ -22,6 +22,7 @@ public class CustomerService {
     @Autowired
     private CustomerRepository customerRepository;
 
+
     //public void save(Customer customer) {
     public Long save(Customer customer) {
         // save (CrudRepository) needs an entity like Customer, CustomerDTO is not an entity
@@ -32,8 +33,8 @@ public class CustomerService {
         return customer.getId();
     }
 
-    // WRONG: public List<Customer> getAllCustomers(){
-    // methode findAll() return needs: Iterable<T> findAll();
+
+    // methode findAll() return needs: Iterable<T> findAll(); and not List<T>
     public List<CustomerDTO> findAllCustomers(){
         /**
          * TO-DO 1: we need to convert an Iterator to a List
@@ -45,9 +46,11 @@ public class CustomerService {
          * SOLUTION: create methode convertCustomer2CustomerDTO()
          */
         List<Customer> listResult = Lists.newArrayList(customerRepository.findAll());
+
         //return convertCustomer2CustomerDTO(listResult);
         return convertCustomer2CustomerDTOelegant(listResult);
     }
+
 
     // in the old days
     // elegant methode see below: convertCustomer2CustomerDTOelegant
@@ -61,6 +64,7 @@ public class CustomerService {
             customerDTO.setPhoneNumber(customer.getPhoneNumber());
             listCustomerDTO.add(customerDTO);
         }
+
         return listCustomerDTO;
     }
 
