@@ -7,8 +7,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 
 import org.hibernate.annotations.Nationalized;
 import com.fasterxml.jackson.annotation.JsonView;
@@ -17,8 +19,13 @@ import com.udacity.jdnd.course3.critter.model.Views;
 
 @Entity
 public class Customer {
+
     @Id
-    @GeneratedValue
+    // https://stackoverflow.com/questions/10041938/how-to-choose-the-id-generation-strategy-when-using-jpa-and-hibernate
+    // https://blog.eyallupu.com/2011/01/hibernatejpa-identity-generators.html
+    // https://docs.oracle.com/javaee/5/api/javax/persistence/SequenceGenerator.html
+    @SequenceGenerator(name="seq-gen", sequenceName="SEQ_GEN_CUSTOMER", initialValue=1, allocationSize=10)
+    @GeneratedValue(strategy=GenerationType.TABLE, generator="seq-gen")
     private Long id;
 
     @JsonView(Views.Public.class)

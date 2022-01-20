@@ -10,8 +10,10 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 
 import com.udacity.jdnd.course3.critter.list.EmployeeSkill;
 import com.udacity.jdnd.course3.critter.model.user.Employee;
@@ -20,7 +22,11 @@ import com.udacity.jdnd.course3.critter.model.user.Employee;
 public class Schedule {
 
     @Id
-    @GeneratedValue
+    // https://stackoverflow.com/questions/10041938/how-to-choose-the-id-generation-strategy-when-using-jpa-and-hibernate
+    // https://blog.eyallupu.com/2011/01/hibernatejpa-identity-generators.html
+    // https://docs.oracle.com/javaee/5/api/javax/persistence/SequenceGenerator.html
+    @SequenceGenerator(name="seq-gen", sequenceName="SEQ_GEN_SCHEDULE", initialValue=1, allocationSize=10)
+    @GeneratedValue(strategy= GenerationType.TABLE, generator="seq-gen")
     private long id;
 
     // used reference: Project 3, Lesson 4 (Part 16)
