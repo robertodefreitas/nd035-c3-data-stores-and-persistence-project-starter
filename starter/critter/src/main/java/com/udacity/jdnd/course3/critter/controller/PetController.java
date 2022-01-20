@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 import com.udacity.jdnd.course3.critter.dao.PetDTO;
+import com.udacity.jdnd.course3.critter.service.PetService;
 
 /**
  * Handles web requests related to Pets.
@@ -16,6 +17,8 @@ import com.udacity.jdnd.course3.critter.dao.PetDTO;
 public class PetController {
 
     private static final Logger logger = LoggerFactory.getLogger(PetController.class);
+
+    PetService petService;
 
     /**
      * POST /pet
@@ -34,9 +37,10 @@ public class PetController {
         String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
         logger.info("[{}] POST /pet", methodeName);
 
+        //PetDTO resultPetDTO = petService.saveDTO(petDTO);
+        //return petDTO;
 
-
-        throw new UnsupportedOperationException();
+        return petService.saveDTO(petDTO);
     }
 
     @GetMapping("/{petId}")

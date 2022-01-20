@@ -25,10 +25,9 @@ public class EmployeeService {
                 employeeDTO.getSkills(),
                 employeeDTO.getDaysAvailable()
         );
-
-        // save (CrudRepository) needs an entity like Employee, EmployeeDTO is not an entity
         employeeRepository.save(employee);
 
+        // we need to give the id to EmployeeDTO
         employeeDTO.setId(employee.getId());
 
         return employeeDTO;

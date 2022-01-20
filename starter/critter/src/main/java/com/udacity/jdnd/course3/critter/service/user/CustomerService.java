@@ -2,6 +2,7 @@ package com.udacity.jdnd.course3.critter.service.user;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.assertj.core.util.Lists;
@@ -22,17 +23,15 @@ public class CustomerService {
     private CustomerRepository customerRepository;
 
 
-    //public void saveDTO(Customer customer) {
     public CustomerDTO saveDTO(CustomerDTO customerDTO) {
 
-        // method save (CrudRepository) needs an entity like Customer, CustomerDTO is not an entity
+        // method save (CrudRepository) needs an entity like Customer.
+        // CustomerDTO is not an entity
         Customer customer = new Customer(
                 customerDTO.getName(),
                 customerDTO.getPhoneNumber(),
                 customerDTO.getNotes()
         );
-
-        // save (CrudRepository) needs an entity like Customer, CustomerDTO is not an entity
         customerRepository.save(customer);
 
         // we need to give the id to CustomerDTO
@@ -91,6 +90,12 @@ public class CustomerService {
                 .collect(Collectors.toList());
 
         return listCustomerDTO;
+    }
+
+    // I need this method because of PetService, to generate a Customer from id
+    // methode findById return this: Optional<T> findById(ID id);
+    public Optional<Customer> findCustomerById(Long ownerId){
+        return customerRepository.findById(ownerId);
     }
 
 }

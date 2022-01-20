@@ -30,8 +30,8 @@ public class Employee {
     // https://stackoverflow.com/questions/10041938/how-to-choose-the-id-generation-strategy-when-using-jpa-and-hibernate
     // https://blog.eyallupu.com/2011/01/hibernatejpa-identity-generators.html
     // https://docs.oracle.com/javaee/5/api/javax/persistence/SequenceGenerator.html
-    @SequenceGenerator(name="seq-gen", sequenceName="SEQ_GEN_EMPLOYEE", initialValue=1, allocationSize=10)
-    @GeneratedValue(strategy=GenerationType.TABLE, generator="seq-gen")
+    @SequenceGenerator(name="seq-gen-employee", sequenceName="SEQ_GEN_EMPLOYEE", initialValue=1, allocationSize=10)
+    @GeneratedValue(strategy=GenerationType.TABLE, generator="seq-gen-employee")
     private long id;
 
     @JsonView(Views.Public.class)

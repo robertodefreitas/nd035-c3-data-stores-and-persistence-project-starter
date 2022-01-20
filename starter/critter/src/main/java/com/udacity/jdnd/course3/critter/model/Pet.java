@@ -24,8 +24,8 @@ public class Pet {
     // https://stackoverflow.com/questions/10041938/how-to-choose-the-id-generation-strategy-when-using-jpa-and-hibernate
     // https://blog.eyallupu.com/2011/01/hibernatejpa-identity-generators.html
     // https://docs.oracle.com/javaee/5/api/javax/persistence/SequenceGenerator.html
-    @SequenceGenerator(name="seq-gen", sequenceName="SEQ_GEN_PET", initialValue=1, allocationSize=10)
-    @GeneratedValue(strategy= GenerationType.TABLE, generator="seq-gen")
+    @SequenceGenerator(name="seq-gen-pet", sequenceName="SEQ_GEN_PET", initialValue=1, allocationSize=10)
+    @GeneratedValue(strategy= GenerationType.TABLE, generator="seq-gen-pet")
     private Long id;
 
     @JsonView(Views.Public.class)
@@ -58,6 +58,22 @@ public class Pet {
     @JoinColumn(name = "id_schedule")
     private Schedule scheduleId;
 
+    /* constructor */
+
+    public Pet(){}
+
+    public Pet(
+            PetType type,
+            String name,
+            Customer ownerId,
+            LocalDate birthDate,
+            String notes) {
+        this.type = type;
+        this.name = name;
+        this.ownerId = ownerId;
+        this.birthDate = birthDate;
+        this.notes = notes;
+    }
 
     /* getters and setters */
 
