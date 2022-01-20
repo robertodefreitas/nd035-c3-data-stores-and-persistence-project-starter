@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import com.udacity.jdnd.course3.critter.controller.user.CustomerController;
 import com.udacity.jdnd.course3.critter.dao.PetDTO;
 
 /**
