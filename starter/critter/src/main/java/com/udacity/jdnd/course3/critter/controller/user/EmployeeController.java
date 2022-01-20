@@ -52,18 +52,7 @@ public class EmployeeController {
         String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
         logger.info("[{}] POST /user/employee", methodeName);
 
-        // method save (CrudRepository) needs an entity like Employee.
-        // EmployeeDTO is not an entity
-        Employee employee = new Employee(
-                employeeDTO.getName(),
-                employeeDTO.getSkills(),
-                employeeDTO.getDaysAvailable()
-        );
-
-        Long idDTO = employeeService.save(employee);
-        employeeDTO.setId(idDTO);
-
-        return employeeDTO;
+        return employeeService.saveDTO(employeeDTO);
     }
 
 

@@ -22,14 +22,23 @@ public class CustomerService {
     private CustomerRepository customerRepository;
 
 
-    //public void save(Customer customer) {
-    public Long save(Customer customer) {
+    //public void saveDTO(Customer customer) {
+    public CustomerDTO saveDTO(CustomerDTO customerDTO) {
+
+        // method save (CrudRepository) needs an entity like Customer, CustomerDTO is not an entity
+        Customer customer = new Customer(
+                customerDTO.getName(),
+                customerDTO.getPhoneNumber(),
+                customerDTO.getNotes()
+        );
+
         // save (CrudRepository) needs an entity like Customer, CustomerDTO is not an entity
         customerRepository.save(customer);
 
         // we need to give the id to CustomerDTO
-        // also change this methode from void to Long
-        return customer.getId();
+        customerDTO.setId(customer.getId());
+
+        return customerDTO;
     }
 
 
@@ -66,6 +75,7 @@ public class CustomerService {
 
         return listCustomerDTO;
     }
+
 
     // Nice way / elegant
     public List<CustomerDTO> convertCustomer2CustomerDTOelegant(List<Customer> listCustomer){

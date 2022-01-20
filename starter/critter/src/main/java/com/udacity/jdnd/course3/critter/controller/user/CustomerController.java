@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.udacity.jdnd.course3.critter.dao.user.CustomerDTO;
-import com.udacity.jdnd.course3.critter.model.user.Customer;
 import com.udacity.jdnd.course3.critter.service.user.CustomerService;
 
 /**
@@ -48,23 +47,10 @@ public class CustomerController {
         String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
         logger.info("[{}] POST /user/customer", methodeName);
 
-        // method save (CrudRepository) needs an entity like Customer, CustomerDTO is not an entity
-        Customer customer = new Customer(
-                customerDTO.getName(),
-                customerDTO.getPhoneNumber(),
-                customerDTO.getNotes()
-        );
-
-        // we need to give the id to CustomerDTO
-        // also change this methode from void to Long
-        //customerService.save(customer);
-        Long idDTO = customerService.save(customer);
-        customerDTO.setId(idDTO);
-
         // instead of return we can use ...
         // throw new UnsupportedOperationException();
         // But we need here a return because of the testCreateCustomer
-        return customerDTO;
+        return customerService.saveDTO(customerDTO);
     }
 
     @GetMapping("/customer")

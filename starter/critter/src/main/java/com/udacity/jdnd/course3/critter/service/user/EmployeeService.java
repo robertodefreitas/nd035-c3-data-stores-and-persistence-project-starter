@@ -16,13 +16,22 @@ public class EmployeeService {
     private EmployeeRepository employeeRepository;
 
 
-    public Long save(Employee employee) {
+    public EmployeeDTO saveDTO(EmployeeDTO employeeDTO) {
+
+        // method save (CrudRepository) needs an entity like Employee.
+        // EmployeeDTO is not an entity
+        Employee employee = new Employee(
+                employeeDTO.getName(),
+                employeeDTO.getSkills(),
+                employeeDTO.getDaysAvailable()
+        );
+
         // save (CrudRepository) needs an entity like Employee, EmployeeDTO is not an entity
         employeeRepository.save(employee);
 
-        // we need to give the id to EmployeeDTO
-        // also change this methode from void to Long
-        return employee.getId();
+        employeeDTO.setId(employee.getId());
+
+        return employeeDTO;
     }
 
 
