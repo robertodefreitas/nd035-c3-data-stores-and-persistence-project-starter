@@ -16,7 +16,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.udacity.jdnd.course3.critter.controller.PetController;
 import com.udacity.jdnd.course3.critter.controller.ScheduleController;
-import com.udacity.jdnd.course3.critter.controller.UserController;
+import com.udacity.jdnd.course3.critter.controller.user.UserController;
 import com.udacity.jdnd.course3.critter.list.EmployeeSkill;
 import com.udacity.jdnd.course3.critter.list.PetType;
 import com.udacity.jdnd.course3.critter.dao.user.EmployeeDTO;

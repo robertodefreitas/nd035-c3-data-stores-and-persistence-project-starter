@@ -1,12 +1,12 @@
-package com.udacity.jdnd.course3.critter.controller;
+package com.udacity.jdnd.course3.critter.controller.user;
 
 import com.udacity.jdnd.course3.critter.dao.user.CustomerDTO;
 import com.udacity.jdnd.course3.critter.dao.user.EmployeeDTO;
 import com.udacity.jdnd.course3.critter.dao.user.EmployeeRequestDTO;
 import com.udacity.jdnd.course3.critter.model.user.Customer;
 import com.udacity.jdnd.course3.critter.model.user.Employee;
-import com.udacity.jdnd.course3.critter.service.CustomerService;
-import com.udacity.jdnd.course3.critter.service.EmployeeService;
+import com.udacity.jdnd.course3.critter.service.user.CustomerService;
+import com.udacity.jdnd.course3.critter.service.user.EmployeeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -122,6 +122,12 @@ public class UserController {
     }
 
 
+    /**
+     * POST /user/employee/1
+     */
+    /* BODY raw:JSON
+    EMPTY
+    */
     @PostMapping("/employee/{employeeId}")
     public EmployeeDTO getEmployee(@PathVariable Long employeeId) {
         String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
@@ -131,6 +137,12 @@ public class UserController {
     }
 
 
+    /**
+     * PUT /user/employee/1
+     */
+    /* BODY raw:JSON
+    ["MONDAY", "TUESDAY", "FRIDAY"]
+    */
     @PutMapping("/employee/{employeeId}")
     public void setAvailability(@RequestBody Set<DayOfWeek> daysAvailable, @PathVariable long employeeId) {
         String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();

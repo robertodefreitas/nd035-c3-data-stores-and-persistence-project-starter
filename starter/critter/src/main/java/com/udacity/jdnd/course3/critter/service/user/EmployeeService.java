@@ -1,4 +1,4 @@
-package com.udacity.jdnd.course3.critter.service;
+package com.udacity.jdnd.course3.critter.service.user;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.udacity.jdnd.course3.critter.dao.user.EmployeeDTO;
 import com.udacity.jdnd.course3.critter.model.user.Employee;
-import com.udacity.jdnd.course3.critter.repository.EmployeeRepository;
+import com.udacity.jdnd.course3.critter.repository.user.EmployeeRepository;
 
 @Service
 public class EmployeeService {

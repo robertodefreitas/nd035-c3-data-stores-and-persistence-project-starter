@@ -1,4 +1,4 @@
-package com.udacity.jdnd.course3.critter.service;
+package com.udacity.jdnd.course3.critter.service.user;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.udacity.jdnd.course3.critter.dao.user.CustomerDTO;
 import com.udacity.jdnd.course3.critter.model.user.Customer;
-import com.udacity.jdnd.course3.critter.repository.CustomerRepository;
+import com.udacity.jdnd.course3.critter.repository.user.CustomerRepository;
 
 @Service
 public class CustomerService {
