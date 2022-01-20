@@ -8,6 +8,16 @@ import com.udacity.jdnd.course3.critter.list.PetType;
  * Represents the form that pet request and response data takes. Does not map
  * to the database directly.
  */
+/* POST BODY raw:JSON
+{
+  "type": "CAT",
+  "name": "Kilo",
+  "birthDate": "2019-12-16T04:43:57.995Z",
+  "notes": "HI KILO"
+, "ownerId": "1"
+}
+*/
+
 public class PetDTO {
     private long id;
     private PetType type;

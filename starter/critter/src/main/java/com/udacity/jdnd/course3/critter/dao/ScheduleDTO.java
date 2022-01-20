@@ -10,6 +10,10 @@ import java.util.Set;
  * Represents the form that schedule request and response data takes. Does not map
  * to the database directly.
  */
+/* POST BODY raw:JSON
+???
+*/
+
 public class ScheduleDTO {
     private long id;
     private List<Long> employeeIds;

@@ -1,9 +1,12 @@
 package com.udacity.jdnd.course3.critter.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import com.udacity.jdnd.course3.critter.controller.user.CustomerController;
 import com.udacity.jdnd.course3.critter.dao.PetDTO;
 
 /**
@@ -13,8 +16,25 @@ import com.udacity.jdnd.course3.critter.dao.PetDTO;
 @RequestMapping("/pet")
 public class PetController {
 
+    private static final Logger logger = LoggerFactory.getLogger(PetController.class);
+
+    /**
+     * POST /pet
+     */
+    /* BODY raw:JSON
+    {
+      "type": "CAT",
+      "name": "Kilo",
+      "birthDate": "2019-12-16T04:43:57.995Z",
+      "notes": "HI KILO"
+    , "ownerId": "1"
+    }
+    */
     @PostMapping
     public PetDTO savePet(@RequestBody PetDTO petDTO) {
+        String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
+        logger.info("[{}] POST /pet", methodeName);
+
         throw new UnsupportedOperationException();
     }
 

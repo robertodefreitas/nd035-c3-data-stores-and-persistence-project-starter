@@ -1,5 +1,7 @@
 package com.udacity.jdnd.course3.critter.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,8 +15,20 @@ import com.udacity.jdnd.course3.critter.dao.ScheduleDTO;
 @RequestMapping("/schedule")
 public class ScheduleController {
 
+    private static final Logger logger = LoggerFactory.getLogger(ScheduleController.class);
+
+    /**
+     * POST /schedule
+     */
+    /* BODY raw:JSON
+    ???
+    */
     @PostMapping
     public ScheduleDTO createSchedule(@RequestBody ScheduleDTO scheduleDTO) {
+        String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
+        logger.info("[{}] POST /schedule", methodeName);
+
+
         throw new UnsupportedOperationException();
     }
 
