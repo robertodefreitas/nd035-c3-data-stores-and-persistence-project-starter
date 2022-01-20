@@ -34,6 +34,8 @@ public class PetController {
         String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
         logger.info("[{}] POST /pet", methodeName);
 
+
+
         throw new UnsupportedOperationException();
     }
 

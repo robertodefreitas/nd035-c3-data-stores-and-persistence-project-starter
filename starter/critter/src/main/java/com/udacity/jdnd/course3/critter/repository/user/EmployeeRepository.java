@@ -9,6 +9,6 @@ import com.udacity.jdnd.course3.critter.model.user.Employee;
  */
 public interface EmployeeRepository extends CrudRepository<Employee, Long> {
     // here is not necessary content, because we use this direct by EmployeeService
-    // Object.save(Customer) or Object.findById(Long)
+    // Object.save(Employee) or Object.findById(Long)
 }
 
