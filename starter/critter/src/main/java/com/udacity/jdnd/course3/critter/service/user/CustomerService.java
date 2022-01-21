@@ -54,21 +54,23 @@ public class CustomerService {
          */
         List<Customer> listResult = Lists.newArrayList(customerRepository.findAll());
 
-        //return convertCustomer2CustomerDTO(listResult);
-        return convertCustomer2CustomerDTOelegant(listResult);
+        //return convertListCustomer2CustomerDTO(listResult);
+        return convertListCustomer2CustomerDTOelegant(listResult);
     }
 
 
     // in the old days
-    // elegant methode see below: convertCustomer2CustomerDTOelegant
+    // elegant methode see below: convertListCustomer2CustomerDTOelegant
     public List<CustomerDTO> convertCustomer2CustomerDTO(List<Customer> listCustomer){
         List<CustomerDTO> listCustomerDTO =  new ArrayList<>();
 
         for (Customer customer: listCustomer) {
             CustomerDTO customerDTO = new CustomerDTO();
+
             customerDTO.setId(customer.getId());
             customerDTO.setName(customer.getName());
             customerDTO.setPhoneNumber(customer.getPhoneNumber());
+
             listCustomerDTO.add(customerDTO);
         }
 
@@ -77,7 +79,7 @@ public class CustomerService {
 
 
     // Nice way / elegant
-    public List<CustomerDTO> convertCustomer2CustomerDTOelegant(List<Customer> listCustomer){
+    public List<CustomerDTO> convertListCustomer2CustomerDTOelegant(List<Customer> listCustomer){
 
         // https://stackoverflow.com/questions/40035102/how-to-convert-a-list-with-properties-to-a-another-list-the-java-8-way
         List<CustomerDTO> listCustomerDTO =  listCustomer

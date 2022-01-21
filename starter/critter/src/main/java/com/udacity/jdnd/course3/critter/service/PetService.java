@@ -1,13 +1,17 @@
 package com.udacity.jdnd.course3.critter.service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.udacity.jdnd.course3.critter.dao.PetDTO;
+import com.udacity.jdnd.course3.critter.dao.user.CustomerDTO;
 import com.udacity.jdnd.course3.critter.dao.user.EmployeeDTO;
 import com.udacity.jdnd.course3.critter.list.PetType;
 import com.udacity.jdnd.course3.critter.model.Pet;
@@ -89,5 +93,58 @@ public class PetService {
         petDTO.setNotes(petDTO.getNotes());
 
         return petDTO;
+    }
+
+    /**
+     * A possibility is to get the pets through the model/entity Customer
+     * the object Pet is by Customer availble
+     */
+    public List<PetDTO> findPetsByCustomer(Long ownerId){
+        Optional<Customer> customerOptional = customerService.findCustomerById(ownerId);
+        
+        //List<PetDTO> listPets = petRepository.
+
+        throw new UnsupportedOperationException();
+    }
+
+
+    // in the old days
+    // elegant methode see below: convertPet2PetDTOelegant
+    public List<PetDTO> convertListPet2PetDTO(List<Pet> listPet){
+        List<PetDTO> listPetDTO =  new ArrayList<>();
+
+        for (Pet pet: listPet) {
+            PetDTO petDTO = new PetDTO();
+
+            petDTO.setId(pet.getId());
+            petDTO.setType(pet.getType());
+            petDTO.setName(pet.getName());
+            petDTO.setOwnerId(pet.getOwnerId().getId());
+            petDTO.setBirthDate(pet.getBirthDate());
+            petDTO.setNotes(pet.getNotes());
+
+            listPetDTO.add(petDTO);
+        }
+
+        return listPetDTO;
+    }
+
+
+    // Nice way / elegant
+    public List<PetDTO> convertListPet2PetDTOelegant(List<Pet> listPet){
+
+        // https://stackoverflow.com/questions/40035102/how-to-convert-a-list-with-propetties-to-a-another-list-the-java-8-way
+        List<PetDTO> listPetDTO =  listPet
+                .stream()
+                .map(pet -> new PetDTO(
+                        pet.getId(),
+                        pet.getType(),
+                        pet.getName(),
+                        pet.getOwnerId().getId(),
+                        pet.getBirthDate(),
+                        pet.getNotes()))
+                .collect(Collectors.toList());
+
+        return listPetDTO;
     }
 }
