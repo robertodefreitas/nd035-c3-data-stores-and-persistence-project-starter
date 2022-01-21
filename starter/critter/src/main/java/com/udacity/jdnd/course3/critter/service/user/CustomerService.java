@@ -92,8 +92,8 @@ public class CustomerService {
         return listCustomerDTO;
     }
 
-    // I need this method because of PetService, to generate a Customer from id
-    // methode findById return this: Optional<T> findById(ID id);
+    // I need this method because of PetService, to get/generate a Customer/Owner from id
+    // FYI: Optional<T> findById(ID id); -> also return Optional<Customer>
     public Optional<Customer> findCustomerById(Long ownerId){
         return customerRepository.findById(ownerId);
     }

@@ -2,6 +2,7 @@ package com.udacity.jdnd.course3.critter.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,7 +19,8 @@ public class PetController {
 
     private static final Logger logger = LoggerFactory.getLogger(PetController.class);
 
-    PetService petService;
+    @Autowired
+    private PetService petService;
 
     /**
      * POST /pet
@@ -36,9 +38,6 @@ public class PetController {
     public PetDTO savePet(@RequestBody PetDTO petDTO) {
         String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
         logger.info("[{}] POST /pet", methodeName);
-
-        //PetDTO resultPetDTO = petService.saveDTO(petDTO);
-        //return petDTO;
 
         return petService.saveDTO(petDTO);
     }
