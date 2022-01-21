@@ -67,6 +67,8 @@ public class CustomerController {
 
     @GetMapping("/customer/pet/{petId}")
     public CustomerDTO getOwnerByPet(@PathVariable long petId){
+        String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
+        logger.info("[{}] GET /user/customer/pet/{}", methodeName, petId);
 
         throw new UnsupportedOperationException();
     }
