@@ -52,13 +52,17 @@ public class PetController {
 
     @GetMapping
     public List<PetDTO> getPets(){
+        String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
+        logger.info("[{}] GET /pet", methodeName);
 
         throw new UnsupportedOperationException();
     }
 
     @GetMapping("/owner/{ownerId}")
     public List<PetDTO> getPetsByOwner(@PathVariable long ownerId) {
+        String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
+        logger.info("[{}] GET /pet/owner/{}", methodeName, ownerId);
 
-        throw new UnsupportedOperationException();
+        return petService.findPetsByCustomer(ownerId);
     }
 }
