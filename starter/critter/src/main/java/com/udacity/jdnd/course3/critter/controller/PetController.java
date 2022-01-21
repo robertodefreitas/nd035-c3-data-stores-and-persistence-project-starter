@@ -44,8 +44,10 @@ public class PetController {
 
     @GetMapping("/{petId}")
     public PetDTO getPet(@PathVariable long petId) {
+        String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
+        logger.info("[{}] GET /pet/{}", methodeName, petId);
 
-        throw new UnsupportedOperationException();
+        return petService.findPetById(petId);
     }
 
     @GetMapping

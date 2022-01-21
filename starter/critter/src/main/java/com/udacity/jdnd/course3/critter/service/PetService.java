@@ -1,5 +1,6 @@
 package com.udacity.jdnd.course3.critter.service;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -7,8 +8,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.udacity.jdnd.course3.critter.dao.PetDTO;
+import com.udacity.jdnd.course3.critter.dao.user.EmployeeDTO;
+import com.udacity.jdnd.course3.critter.list.PetType;
 import com.udacity.jdnd.course3.critter.model.Pet;
 import com.udacity.jdnd.course3.critter.model.user.Customer;
+import com.udacity.jdnd.course3.critter.model.user.Employee;
 import com.udacity.jdnd.course3.critter.repository.PetRepository;
 import com.udacity.jdnd.course3.critter.service.user.CustomerService;
 
@@ -66,4 +70,24 @@ public class PetService {
         return petDTO;
     }
 
+
+    public PetDTO findPetById(Long petId){
+        Pet petResult = petRepository.findById(petId).get();
+
+        return convertPet2PetDTO(petResult);
+    }
+
+
+    public PetDTO convertPet2PetDTO(Pet pet){
+        PetDTO petDTO = new PetDTO();
+
+        petDTO.setId(pet.getId());
+        petDTO.setType(pet.getType());
+        petDTO.setName(pet.getName());
+        petDTO.setOwnerId(pet.getOwnerId().getId());
+        petDTO.setBirthDate(pet.getBirthDate());
+        petDTO.setNotes(petDTO.getNotes());
+
+        return petDTO;
+    }
 }
