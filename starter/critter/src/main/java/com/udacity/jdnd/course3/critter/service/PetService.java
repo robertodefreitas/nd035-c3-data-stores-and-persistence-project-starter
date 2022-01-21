@@ -31,8 +31,8 @@ public class PetService {
         // we need to convert petDTO.getOwnerId() on a Customer Object
         Optional<Customer> customerOptional = customerService.findCustomerById(petDTO.getOwnerId());
 
-        // if customer null then new Customer() -> orElse works here!
-        //Customer customer = customerOptional.orElse(new Customer());
+        // if customer null then select the default Customer ID=1 because of orElse -> this works!
+        //Customer customer = customerOptional.orElse(customerService.findCustomerById(1L).get());
         Customer customer;
 
         if ( customerOptional.isPresent() ) {

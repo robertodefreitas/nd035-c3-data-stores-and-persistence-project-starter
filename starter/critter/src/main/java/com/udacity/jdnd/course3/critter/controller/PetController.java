@@ -31,7 +31,7 @@ public class PetController {
       "name": "Kilo",
       "birthDate": "2019-12-16T04:43:57.995Z",
       "notes": "HI KILO"
-    , "ownerId": "1"
+    , "ownerId": "2"
     }
     */
     @PostMapping
@@ -44,16 +44,19 @@ public class PetController {
 
     @GetMapping("/{petId}")
     public PetDTO getPet(@PathVariable long petId) {
+
         throw new UnsupportedOperationException();
     }
 
     @GetMapping
     public List<PetDTO> getPets(){
+
         throw new UnsupportedOperationException();
     }
 
     @GetMapping("/owner/{ownerId}")
     public List<PetDTO> getPetsByOwner(@PathVariable long ownerId) {
+
         throw new UnsupportedOperationException();
     }
 }
