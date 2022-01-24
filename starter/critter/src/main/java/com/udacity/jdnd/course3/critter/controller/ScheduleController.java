@@ -28,27 +28,58 @@ public class ScheduleController {
         String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
         logger.info("[{}] POST /schedule", methodeName);
 
+        /**
+         * TO-DO
+         */
 
         throw new UnsupportedOperationException();
     }
 
     @GetMapping
     public List<ScheduleDTO> getAllSchedules() {
+        String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
+        logger.info("[{}] GET /schedule", methodeName);
+
+        /**
+         * TO-DO
+         */
+
         throw new UnsupportedOperationException();
     }
 
     @GetMapping("/pet/{petId}")
     public List<ScheduleDTO> getScheduleForPet(@PathVariable long petId) {
+        String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
+        logger.info("[{}] GET /schedule/pet/{}", methodeName, petId);
+
+        /**
+         * TO-DO
+         */
+
         throw new UnsupportedOperationException();
     }
 
     @GetMapping("/employee/{employeeId}")
     public List<ScheduleDTO> getScheduleForEmployee(@PathVariable long employeeId) {
+        String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
+        logger.info("[{}] GET /schedule/employee/{}", methodeName, employeeId);
+
+        /**
+         * TO-DO
+         */
+
         throw new UnsupportedOperationException();
     }
 
     @GetMapping("/customer/{customerId}")
     public List<ScheduleDTO> getScheduleForCustomer(@PathVariable long customerId) {
+        String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
+        logger.info("[{}] GET /schedule/customer/{}", methodeName, customerId);
+
+        /**
+         * TO-DO
+         */
+
         throw new UnsupportedOperationException();
     }
 }

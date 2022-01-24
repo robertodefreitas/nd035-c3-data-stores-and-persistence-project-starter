@@ -55,6 +55,9 @@ public class PetController {
         String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
         logger.info("[{}] GET /pet", methodeName);
 
+        /**
+         * TO-DO
+         */
         throw new UnsupportedOperationException();
     }
 

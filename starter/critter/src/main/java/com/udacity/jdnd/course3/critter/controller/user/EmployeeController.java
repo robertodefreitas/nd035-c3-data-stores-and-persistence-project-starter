@@ -82,6 +82,10 @@ public class EmployeeController {
         String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
         logger.info("[{}] PUT /user/employee/{}", methodeName, employeeId);
 
+        /**
+         * TO-DO
+         */
+
         throw new UnsupportedOperationException();
     }
 
@@ -90,6 +94,10 @@ public class EmployeeController {
     public List<EmployeeDTO> findEmployeesForService(@RequestBody EmployeeRequestDTO employeeDTO) {
         String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
         logger.info("[{}] GET /user/employee/availability", methodeName);
+
+        /**
+         * TO-DO
+         */
 
         throw new UnsupportedOperationException();
     }
