@@ -102,13 +102,15 @@ public class PetService {
         String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
         logger.info("[{}] get list of Pets from Customer ID: {}", methodeName, ownerId);
 
-        Optional<Customer> customerOptional = customerService.findCustomerById(ownerId);
-        if ( customerOptional.isPresent() ) {
+        Optional<Customer> optionalCustomer = customerService.findCustomerById(ownerId);
+
+        if ( optionalCustomer.isPresent() ) {
             logger.info("[{}] Optional<Customer> is avalable ID: {}", methodeName, ownerId);
         } else {
             logger.info("[{}] Optional<Customer> is empty ID: {}", methodeName, ownerId);
         }
-        Customer customer = customerOptional.get();
+
+        Customer customer = optionalCustomer.get();
         List<Pet> listPet = customer.getPetIds();
 
         return convertListPet2PetDTOelegant(listPet);

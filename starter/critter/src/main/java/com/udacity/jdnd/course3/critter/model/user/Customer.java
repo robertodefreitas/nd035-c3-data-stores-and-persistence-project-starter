@@ -1,5 +1,6 @@
 package com.udacity.jdnd.course3.critter.model.user;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -69,6 +70,9 @@ public class Customer {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.notes = notes;
+        // we need to create a ArrayList because of error with unitTest testAddPetsToCustomer
+        // java.lang.NullPointerException: Cannot invoke "java.util.List.stream()" because "listPet" is null (PetService)
+        this.petIds = new ArrayList<Pet>();
     }
 
 
