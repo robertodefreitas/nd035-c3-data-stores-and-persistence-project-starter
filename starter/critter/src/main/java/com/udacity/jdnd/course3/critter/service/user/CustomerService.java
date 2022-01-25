@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.udacity.jdnd.course3.critter.dao.user.CustomerDTO;
+import com.udacity.jdnd.course3.critter.model.Pet;
 import com.udacity.jdnd.course3.critter.model.user.Customer;
 import com.udacity.jdnd.course3.critter.repository.user.CustomerRepository;
 
@@ -59,40 +60,79 @@ public class CustomerService {
     }
 
 
-    // in the old days
-    // elegant methode see below: convertListCustomer2CustomerDTOelegant
-    public List<CustomerDTO> convertCustomer2CustomerDTO(List<Customer> listCustomer){
-        List<CustomerDTO> listCustomerDTO =  new ArrayList<>();
+//    // in the old days
+//    // elegant methode see below: convertListCustomer2CustomerDTOelegant
+//    public List<CustomerDTO> convertCustomer2CustomerDTO(List<Customer> listCustomer){
+//        List<CustomerDTO> listCustomerDTO =  new ArrayList<>();
+//
+//        for (Customer customer: listCustomer) {
+//            CustomerDTO customerDTO = new CustomerDTO();
+//
+//            customerDTO.setId(customer.getId());
+//            customerDTO.setName(customer.getName());
+//            customerDTO.setPhoneNumber(customer.getPhoneNumber());
+//
+//            listCustomerDTO.add(customerDTO);
+//        }
+//
+//        return listCustomerDTO;
+//    }
+//
+//    // Nice way / elegant
+//    public List<CustomerDTO> convertListCustomer2CustomerDTOelegant(List<Customer> listCustomer){
+//
+//        // https://stackoverflow.com/questions/40035102/how-to-convert-a-list-with-properties-to-a-another-list-the-java-8-way
+//        List<CustomerDTO> listCustomerDTO =  listCustomer
+//                .stream()
+//                .map(customer -> new CustomerDTO(
+//                        customer.getId(),
+//                        customer.getName(),
+//                        customer.getPhoneNumber(),
+//                        customer.getNotes()))
+//                .collect(Collectors.toList());
+//
+//        return listCustomerDTO;
+//    }
 
-        for (Customer customer: listCustomer) {
-            CustomerDTO customerDTO = new CustomerDTO();
 
-            customerDTO.setId(customer.getId());
-            customerDTO.setName(customer.getName());
-            customerDTO.setPhoneNumber(customer.getPhoneNumber());
+    // Part 3 from 3 to resolve the issue by CritterFunctionalTest.java
+    // java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+    // Change the convertCustomer2CustomerDTO to convert a Customer instead of a List<Customer>,
+    // in which we will map the data from the Customer to the CustomerDTO,
+    // considering that in case the list of Pets obtained through the Customer is not null,
+    // we will get the id of each Pet and we will add it to the petIds list and
+    // we will add the petIds list to the CustomerDTO returning it
+    public CustomerDTO convertCustomer2CustomerDTO(Customer customer){
+        CustomerDTO customerDTO = new CustomerDTO();
 
-            listCustomerDTO.add(customerDTO);
+        customerDTO.setId(customer.getId());
+        customerDTO.setName(customer.getName());
+        customerDTO.setPhoneNumber(customer.getPhoneNumber());
+        customerDTO.setNotes(customer.getNotes());
+
+        List<Pet> listPet = customer.getPetIds();
+
+        if(listPet != null){
+            List<Long> petIds = new ArrayList<>();
+            for (Pet pet : listPet){
+                petIds.add(pet.getId());
+            }
+            customerDTO.setPetIds(petIds);
         }
 
-        return listCustomerDTO;
+        return customerDTO;
     }
 
 
-    // Nice way / elegant
+    // Part 3 from 3 to resolve the issue by CritterFunctionalTest.java
+    // java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
     public List<CustomerDTO> convertListCustomer2CustomerDTOelegant(List<Customer> listCustomer){
-
-        // https://stackoverflow.com/questions/40035102/how-to-convert-a-list-with-properties-to-a-another-list-the-java-8-way
-        List<CustomerDTO> listCustomerDTO =  listCustomer
+        return listCustomer
                 .stream()
-                .map(customer -> new CustomerDTO(
-                        customer.getId(),
-                        customer.getName(),
-                        customer.getPhoneNumber(),
-                        customer.getNotes()))
+                .map(this::convertCustomer2CustomerDTO)
                 .collect(Collectors.toList());
-
-        return listCustomerDTO;
     }
+
 
     // I need this method because of PetService, to get/generate a Customer/Owner from id
     // FYI: Optional<T> findById(ID id); -> also return Optional<Customer>

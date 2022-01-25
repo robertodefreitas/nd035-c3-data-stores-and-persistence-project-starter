@@ -31,9 +31,17 @@ public class PetService {
     public PetDTO saveDTO(PetDTO petDTO) {
         String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
 
+        // Part 2 from 3 to resolve the issue
+        // java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+        Optional<Customer> customerOptional = Optional.empty();
+        if (petDTO.getOwnerId() != null){
+            customerOptional = customerService.findCustomerById(petDTO.getOwnerId());
+        }
+
+
         // because of the object Customer as OwnerId on the model (entity)
         // we need to convert petDTO.getOwnerId() on a Customer Object
-        Optional<Customer> customerOptional = customerService.findCustomerById(petDTO.getOwnerId());
+        //Optional<Customer> customerOptional = customerService.findCustomerById(petDTO.getOwnerId());
 
         // if customer null then select the default Customer ID=1 because of orElse -> this works!
         //Customer customer = customerOptional.orElse(customerService.findCustomerById(1L).get());
@@ -62,12 +70,19 @@ public class PetService {
                 petDTO.getBirthDate(),
                 petDTO.getNotes()
         );
-        petRepository.save(pet);
+//        petRepository.save(pet);
+//        // we need to give the id to PetDTO
+//        petDTO.setId(pet.getId());
+//        return petDTO;
 
-        // we need to give the id to PetDTO
-        petDTO.setId(pet.getId());
-
-        return petDTO;
+        // Part 2 from 3 to resolve the issue by CritterFunctionalTest.java
+        // java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+        // In saveDTO ensure that Pet and Customer are in-sync and for that,
+        // after saving Pet we will store it in the savedPet variable and
+        // if Customer is not null we add Pet to Customer through addPet method
+        Pet savedPet = petRepository.save(pet);
+        customer.addPet(savedPet);
+        return convertPet2PetDTO(savedPet);
     }
 
 
@@ -83,6 +98,13 @@ public class PetService {
 
     public PetDTO convertPet2PetDTO(Pet pet){
         PetDTO petDTO = new PetDTO();
+
+        // Part 2 from 3 to resolve the issue by CritterFunctionalTest.java
+        // java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+        // In convertPet2PetDTO we put a check in which if the Pet id is not null we put it into PetDTO
+        if (pet.getOwnerId() != null){
+            petDTO.setOwnerId(pet.getOwnerId().getId());
+        }
 
         petDTO.setId(pet.getId());
         petDTO.setType(pet.getType());
@@ -104,14 +126,31 @@ public class PetService {
 
         Optional<Customer> optionalCustomer = customerService.findCustomerById(ownerId);
 
+
+//        if ( optionalCustomer.isPresent() ) {
+//            logger.info("[{}] Optional<Customer> is avalable ID: {}", methodeName, ownerId);
+//        } else {
+//            logger.info("[{}] Optional<Customer> is empty ID: {}", methodeName, ownerId);
+//        }
+//        Customer customer = optionalCustomer.get();
+//        List<Pet> listPet = customer.getPetIds();
+
+
+        // Part 2 from 3 to resolve the issue by CritterFunctionalTest.java
+        // java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+        // In the findPetsByCustomer more specifically in the if, we get the Customer and
+        // store in the listPet the Pets referring to that Customer if the Customer is not null,
+        // if it is null we store in the listPet an empty ArrayList
+        List<Pet> listPet;
         if ( optionalCustomer.isPresent() ) {
             logger.info("[{}] Optional<Customer> is avalable ID: {}", methodeName, ownerId);
+            Customer customer = optionalCustomer.get();
+            listPet = customer.getPetIds();
         } else {
             logger.info("[{}] Optional<Customer> is empty ID: {}", methodeName, ownerId);
+            listPet = new ArrayList<>();
         }
 
-        Customer customer = optionalCustomer.get();
-        List<Pet> listPet = customer.getPetIds();
 
         return convertListPet2PetDTOelegant(listPet);
     }

@@ -117,4 +117,12 @@ public class Customer {
     public void setPetIds(List<Pet> petIds) {
         this.petIds = petIds;
     }
+
+    // Part 1 from 3 to resolve the issue by CritterFunctionalTest.java
+    // java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+    // Here we will include the addPet method so that we can add the Pet to the petIds list
+    // this will be used by PetService.saveDTO
+    public void addPet(Pet pet){
+        petIds.add(pet);
+    }
 }
