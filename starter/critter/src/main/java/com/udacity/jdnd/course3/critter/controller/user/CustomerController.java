@@ -70,11 +70,8 @@ public class CustomerController {
         String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
         logger.info("[{}] GET /user/customer/pet/{}", methodeName, petId);
 
-        /**
-         * TO-DO
-         */
-
-        throw new UnsupportedOperationException();
+        return customerService.findCustomerByPet(petId);
+        //throw new UnsupportedOperationException();
     }
 
 }

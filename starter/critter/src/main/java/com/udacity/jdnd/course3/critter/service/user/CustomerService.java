@@ -10,10 +10,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.udacity.jdnd.course3.critter.dao.PetDTO;
 import com.udacity.jdnd.course3.critter.dao.user.CustomerDTO;
 import com.udacity.jdnd.course3.critter.model.Pet;
 import com.udacity.jdnd.course3.critter.model.user.Customer;
 import com.udacity.jdnd.course3.critter.repository.user.CustomerRepository;
+import com.udacity.jdnd.course3.critter.service.PetService;
 
 @Service
 public class CustomerService {
@@ -22,6 +24,9 @@ public class CustomerService {
 
     @Autowired
     private CustomerRepository customerRepository;
+
+    @Autowired
+    private PetService petService;
 
 
     public CustomerDTO saveDTO(CustomerDTO customerDTO) {
@@ -138,6 +143,24 @@ public class CustomerService {
     // FYI: Optional<T> findById(ID id); -> also return Optional<Customer>
     public Optional<Customer> findCustomerById(Long ownerId){
         return customerRepository.findById(ownerId);
+    }
+
+
+
+    /**
+     * A possibility is to get the customers through the model/entity Pet
+     * the object customer is by Pet available
+     */
+    public CustomerDTO findCustomerByPet(Long petId){
+        String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
+        logger.info("[{}] get list of Customers from Pet ID: {}", methodeName, petId);
+
+        PetDTO petFounded = petService.findPetById(petId);
+        Optional<Customer> optionalCustomer = findCustomerById(petFounded.getOwnerId());
+
+        logger.info("[{}] founded Customer ID: {}", methodeName, optionalCustomer.get().getId());
+
+        return convertCustomer2CustomerDTO(optionalCustomer.get());
     }
 
 }

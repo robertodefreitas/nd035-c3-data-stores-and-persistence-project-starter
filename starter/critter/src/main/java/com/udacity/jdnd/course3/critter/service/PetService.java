@@ -33,6 +33,8 @@ public class PetService {
 
         // Part 2 from 3 to resolve the issue
         // java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+        // In saveDTO check if the getOwnerId of the petDTO is not null,
+        // if not we will get the Customer through the id
         Optional<Customer> customerOptional = Optional.empty();
         if (petDTO.getOwnerId() != null){
             customerOptional = customerService.findCustomerById(petDTO.getOwnerId());
@@ -118,7 +120,7 @@ public class PetService {
 
     /**
      * A possibility is to get the pets through the model/entity Customer
-     * the object Pet is by Customer availble
+     * the object Pet is by Customer available
      */
     public List<PetDTO> findPetsByCustomer(Long ownerId){
         String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
