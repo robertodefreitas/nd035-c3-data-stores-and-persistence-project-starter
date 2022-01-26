@@ -82,11 +82,7 @@ public class EmployeeController {
         String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
         logger.info("[{}] PUT /user/employee/{}", methodeName, employeeId);
 
-        /**
-         * TO-DO
-         */
-
-        throw new UnsupportedOperationException();
+        employeeService.setEmployeeAvailabilityById(daysAvailable,employeeId);
     }
 
 

@@ -1,5 +1,8 @@
 package com.udacity.jdnd.course3.critter.service.user;
 
+import java.time.DayOfWeek;
+import java.util.Set;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +54,19 @@ public class EmployeeService {
         employeeDTO.setDaysAvailable(employee.getDaysAvailable());
 
         return employeeDTO;
+    }
+
+
+    public void setEmployeeAvailabilityById(Set<DayOfWeek> daysAvailable, Long employeeId){
+        String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
+
+        //EmployeeDTO employeeDTO = findEmployeeById(employeeId);
+        Employee resultEmployee = employeeRepository.findById(employeeId).get();
+        logger.info("[{}] Employe ID: {}, Days Available: {}", methodeName, employeeId, resultEmployee.getDaysAvailable());
+
+        resultEmployee.setDaysAvailable(daysAvailable);
+        logger.info("[{}] Employe ID: {}, Days Available: {}", methodeName, employeeId, resultEmployee.getDaysAvailable());
+        employeeRepository.save(resultEmployee);
     }
 }
 
