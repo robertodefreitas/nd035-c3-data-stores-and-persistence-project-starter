@@ -2,11 +2,13 @@ package com.udacity.jdnd.course3.critter.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 import com.udacity.jdnd.course3.critter.dto.ScheduleDTO;
+import com.udacity.jdnd.course3.critter.service.ScheduleService;
 
 /**
  * Handles web requests related to Schedules.
@@ -17,22 +19,28 @@ public class ScheduleController {
 
     private static final Logger logger = LoggerFactory.getLogger(ScheduleController.class);
 
+    @Autowired
+    ScheduleService scheduleService;
+
     /**
      * POST /schedule
      */
-    /* BODY raw:JSON
-    ???
+    /* POST BODY raw:JSON
+    {
+        "id": 0,
+        "employeeIds": [1],
+        "petIds": [1,2],
+        "date": "2022-01-31",
+        "activities": ["PETTING", "FEEDING"]
+    }
     */
     @PostMapping
     public ScheduleDTO createSchedule(@RequestBody ScheduleDTO scheduleDTO) {
         String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
         logger.info("[{}] POST /schedule", methodeName);
 
-        /**
-         * TO-DO
-         */
-
-        throw new UnsupportedOperationException();
+        return scheduleService.saveDTO(scheduleDTO);
+        //throw new UnsupportedOperationException();
     }
 
     @GetMapping

@@ -11,7 +11,13 @@ import java.util.Set;
  * to the database directly.
  */
 /* POST BODY raw:JSON
-???
+{
+    "id": 0,
+    "employeeIds": [1],
+    "petIds": [1,2],
+    "date": "2022-01-31",
+    "activities": ["PETTING", "FEEDING"]
+}
 */
 
 public class ScheduleDTO {
@@ -24,14 +30,20 @@ public class ScheduleDTO {
     private Set<EmployeeSkill> activities;
 
 
+    /* constructor */
+
+
+
+    /* getters and setters */
+
     public long getId(){
         return id;
     }
-    
+
     public void setId(long id){
         this.id = id;
     }
-    
+
     public List<Long> getEmployeeIds() {
         return employeeIds;
     }

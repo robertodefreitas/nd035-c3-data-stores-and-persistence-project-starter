@@ -1,10 +1,13 @@
 package com.udacity.jdnd.course3.critter.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -12,6 +15,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
@@ -49,11 +54,32 @@ public class Schedule {
 
     private LocalDate date;
 
+    // extra table is nescessary, because of more skills value for the same employee
+    // know-how from project 3 lesson 2 (Part 11, Entity Relationships)
+    // https://stackoverflow.com/questions/15998824/mapping-setenum-using-elementcollection
+    @ElementCollection(targetClass = EmployeeSkill.class)
+    @JoinTable(name = "employee_skills", joinColumns = @JoinColumn(name = "id_employee"))
+    @Column(name ="employeeSkill", nullable = false)
     // https://www.baeldung.com/jpa-persisting-enums-in-jpa
     @Enumerated(EnumType.STRING)
     // Attribute [com.udacity.jdnd.course3.critter.model.Schedule.activities] was annotated as enumerated, but its java type is not an enum [java.util.Set]
-    //private Set<EmployeeSkill> activities;
-    private EmployeeSkill activities;
+    private Set<EmployeeSkill> activities;
+    //private EmployeeSkill activities;
+
+
+    /* constructor */
+
+    public Schedule() {
+    }
+
+    public Schedule(
+            LocalDate date,
+            Set<EmployeeSkill> activities) {
+        this.employeeIds = new ArrayList<Employee>();
+        this.petIds = new ArrayList<Pet>();;
+        this.date = date;
+        this.activities = activities;
+    }
 
 
     /* getters and setters */
@@ -90,11 +116,11 @@ public class Schedule {
         this.date = date;
     }
 
-    public EmployeeSkill getActivities() {
+    public Set<EmployeeSkill> getActivities() {
         return activities;
     }
 
-    public void setActivities(EmployeeSkill activities) {
+    public void setActivities(Set<EmployeeSkill> activities) {
         this.activities = activities;
     }
 }
