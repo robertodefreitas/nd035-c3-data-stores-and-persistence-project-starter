@@ -13,7 +13,7 @@ I am an udacity student and in this folder is my solution available.
 * A Data Access Object abstracts and encapsulates all access to the data source. The DAO manages the connection with the data source to obtain and store data.
 * The DAO implements the access mechanism required to work with the data source. The data source could be a persistent store like an RDBMS, or a business service accessed via REST or SOAP.
 * The DAO abstracts the underlying data access implementation for the Service objects to enable transparent access to the data source. The Service also delegates data load and store operations to the DAO.
-* _Nur als Beschreibung für das Verständnis, um nicht mit DTO durcheinander zu kommen. Ich selbst habe keine DAO Object bei dem Projekt verwendet bzw. gefunden.
+* _Nur als Beschreibung für das Verständnis, um nicht mit DTO durcheinander zu kommen. Ich selbst habe keine DAO Object bei dem Projekt verwendet bzw. gefunden._
 
 ## Quellen
 * https://www.maibornwolff.de/blog/von-schichten-zu-ringen-hexagonale-architekturen-erklaert
