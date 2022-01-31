@@ -1,4 +1,4 @@
-package com.udacity.jdnd.course3.critter.dao.user;
+package com.udacity.jdnd.course3.critter.dto.user;
 
 import java.time.LocalDate;
 import java.util.Set;

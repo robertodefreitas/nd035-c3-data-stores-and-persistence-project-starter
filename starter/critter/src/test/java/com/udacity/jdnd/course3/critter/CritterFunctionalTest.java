@@ -20,11 +20,11 @@ import com.udacity.jdnd.course3.critter.controller.user.CustomerController;
 import com.udacity.jdnd.course3.critter.controller.user.EmployeeController;
 import com.udacity.jdnd.course3.critter.list.EmployeeSkill;
 import com.udacity.jdnd.course3.critter.list.PetType;
-import com.udacity.jdnd.course3.critter.dao.user.EmployeeDTO;
-import com.udacity.jdnd.course3.critter.dao.PetDTO;
-import com.udacity.jdnd.course3.critter.dao.ScheduleDTO;
-import com.udacity.jdnd.course3.critter.dao.user.CustomerDTO;
-import com.udacity.jdnd.course3.critter.dao.user.EmployeeRequestDTO;
+import com.udacity.jdnd.course3.critter.dto.user.EmployeeDTO;
+import com.udacity.jdnd.course3.critter.dto.PetDTO;
+import com.udacity.jdnd.course3.critter.dto.ScheduleDTO;
+import com.udacity.jdnd.course3.critter.dto.user.CustomerDTO;
+import com.udacity.jdnd.course3.critter.dto.user.EmployeeRequestDTO;
 
 /**
  * This is a set of functional tests to validate the basic capabilities desired for this application.

@@ -14,9 +14,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.udacity.jdnd.course3.critter.dao.user.EmployeeDTO;
-import com.udacity.jdnd.course3.critter.dao.user.EmployeeRequestDTO;
-import com.udacity.jdnd.course3.critter.model.user.Employee;
+import com.udacity.jdnd.course3.critter.dto.user.EmployeeDTO;
+import com.udacity.jdnd.course3.critter.dto.user.EmployeeRequestDTO;
 import com.udacity.jdnd.course3.critter.service.user.EmployeeService;
 
 /**

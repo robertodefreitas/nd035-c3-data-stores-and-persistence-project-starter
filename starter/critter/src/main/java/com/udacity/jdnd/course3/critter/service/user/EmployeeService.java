@@ -7,7 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.udacity.jdnd.course3.critter.dao.user.EmployeeDTO;
+import com.udacity.jdnd.course3.critter.dto.user.EmployeeDTO;
 import com.udacity.jdnd.course3.critter.model.user.Employee;
 import com.udacity.jdnd.course3.critter.repository.user.EmployeeRepository;
 
