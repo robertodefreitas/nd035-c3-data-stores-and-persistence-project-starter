@@ -34,11 +34,11 @@ public class Schedule {
     private Long id;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "schedule_employee", joinColumns = @JoinColumn(name = "id_schedule"))
+    @JoinTable(name = "schedule_employee", joinColumns = @JoinColumn(name = "id_schedule"), inverseJoinColumns = @JoinColumn(name = "ids_employee"))
     private List<Employee> employeeIds;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "schedule_pet", joinColumns = @JoinColumn(name = "id_schedule"))
+    @JoinTable(name = "schedule_pet", joinColumns = @JoinColumn(name = "id_schedule"), inverseJoinColumns = @JoinColumn(name = "ids_pet"))
     private List<Pet> petIds;
 
     private LocalDate date;
@@ -47,8 +47,8 @@ public class Schedule {
     // know-how from project 3 lesson 2 (Part 11, Entity Relationships)
     // https://stackoverflow.com/questions/15998824/mapping-setenum-using-elementcollection
     @ElementCollection(targetClass = EmployeeSkill.class)
-    @JoinTable(name = "employee_skills", joinColumns = @JoinColumn(name = "id_employee"))
-    @Column(name ="employeeSkill", nullable = false)
+    @JoinTable(name = "schedule_skills", joinColumns = @JoinColumn(name = "id_schedule"))
+    @Column(name ="skills_activities", nullable = false)
     // https://www.baeldung.com/jpa-persisting-enums-in-jpa
     @Enumerated(EnumType.STRING)
     // Attribute [com.udacity.jdnd.course3.critter.model.Schedule.activities] was annotated as enumerated, but its java type is not an enum [java.util.Set]

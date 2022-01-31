@@ -43,7 +43,7 @@ public class Employee {
     // https://stackoverflow.com/questions/15998824/mapping-setenum-using-elementcollection
     @ElementCollection(targetClass = EmployeeSkill.class)
     @JoinTable(name = "employee_skills", joinColumns = @JoinColumn(name = "id_employee"))
-    @Column(name ="employeeSkill", nullable = false)
+    @Column(name ="skills", nullable = false)
     // https://www.baeldung.com/jpa-persisting-enums-in-jpa
     @Enumerated(EnumType.STRING)
     // https://stackoverflow.com/questions/44258541/illegal-attempt-to-map-a-non-collection-as-a-onetomany-manytomany-or-collec
