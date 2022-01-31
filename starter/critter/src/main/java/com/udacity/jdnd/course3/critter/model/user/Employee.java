@@ -31,7 +31,7 @@ public class Employee {
     // https://docs.oracle.com/javaee/5/api/javax/persistence/SequenceGenerator.html
     @SequenceGenerator(name="seq-gen-employee", sequenceName="SEQ_GEN_EMPLOYEE", initialValue=1, allocationSize=10)
     @GeneratedValue(strategy=GenerationType.TABLE, generator="seq-gen-employee")
-    private long id;
+    private Long id;
 
     @JsonView(Views.Public.class)
     @Nationalized
@@ -64,15 +64,6 @@ public class Employee {
     //private DayOfWeek daysAvailable;
 
 
-    // used reference: Project 3, Lesson 4 (Part 16)
-    //don't retrieve schedule if we don't need it
-    // see: private List<Employee> employeeIds; in Class Schedule
-    // this create a column on the table pet with the name id_schedule
-    @ManyToOne
-    @JoinColumn(name = "id_schedule")
-    private Schedule scheduleId;
-
-
     /* constructor */
 
     /**
@@ -98,11 +89,11 @@ public class Employee {
 
     /* getters and setters */
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -128,14 +119,6 @@ public class Employee {
 
     public void setDaysAvailable(Set<DayOfWeek> daysAvailable) {
         this.daysAvailable = daysAvailable;
-    }
-
-    public Schedule getScheduleId() {
-        return scheduleId;
-    }
-
-    public void setScheduleId(Schedule scheduleId) {
-        this.scheduleId = scheduleId;
     }
 
 }

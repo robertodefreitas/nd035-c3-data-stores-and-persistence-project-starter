@@ -50,13 +50,6 @@ public class Pet {
     @JoinColumn(name = "id_customer")
     private Customer ownerId;
 
-    // used reference: Project 3, Lesson 4 (Part 16)
-    //don't retrieve schedule if we don't need it
-    // see: private List<Pet> petIds; in Class Schedule
-    // this create a column on the table pet with the name id_schedule
-    @ManyToOne
-    @JoinColumn(name = "id_schedule")
-    private Schedule scheduleId;
 
     /* constructor */
 

@@ -476,7 +476,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"employeeIds\": [1],\r\n    \"petIds\": [1,2],\r\n    \"date\": \"2022-01-31\",\r\n    \"activities\": [\"PETTING\", \"FEEDING\"]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

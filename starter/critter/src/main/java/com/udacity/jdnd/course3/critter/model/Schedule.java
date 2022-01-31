@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -17,7 +16,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 
 import com.udacity.jdnd.course3.critter.list.EmployeeSkill;
@@ -32,24 +31,14 @@ public class Schedule {
     // https://docs.oracle.com/javaee/5/api/javax/persistence/SequenceGenerator.html
     @SequenceGenerator(name="seq-gen-schedule", sequenceName="SEQ_GEN_SCHEDULE", initialValue=1, allocationSize=10)
     @GeneratedValue(strategy= GenerationType.TABLE, generator="seq-gen-schedule")
-    private long id;
+    private Long id;
 
-    // used reference: Project 3, Lesson 4 (Part 16)
-    // added CascadeType.REMOVE to automatically clear any associated Employee when removed
-    // see: private Schedule scheduleId; in Class Employee
-    // this doesn't create a column on the table schedule
-    @OneToMany(fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL,
-            mappedBy = "scheduleId")
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "schedule_employee", joinColumns = @JoinColumn(name = "id_schedule"))
     private List<Employee> employeeIds;
 
-    // used reference: Project 3, Lesson 4 (Part 16)
-    // added CascadeType.REMOVE to automatically clear any associated Pet when removed
-    // see: private Schedule scheduleId; in Class Pet
-    // this doesn't create a column on the table schedule
-    @OneToMany(fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL,
-            mappedBy = "scheduleId")
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "schedule_pet", joinColumns = @JoinColumn(name = "id_schedule"))
     private List<Pet> petIds;
 
     private LocalDate date;
@@ -76,7 +65,7 @@ public class Schedule {
             LocalDate date,
             Set<EmployeeSkill> activities) {
         this.employeeIds = new ArrayList<Employee>();
-        this.petIds = new ArrayList<Pet>();;
+        this.petIds = new ArrayList<Pet>();
         this.date = date;
         this.activities = activities;
     }
@@ -84,11 +73,11 @@ public class Schedule {
 
     /* getters and setters */
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
