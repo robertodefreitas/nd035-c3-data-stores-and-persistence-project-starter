@@ -196,4 +196,29 @@ public class PetService {
 
         return listPetDTO;
     }
+
+    public List<Pet> convertListPetDTO2Pet(List<PetDTO> listPetDTO){
+
+        // https://stackoverflow.com/questions/40035102/how-to-convert-a-list-with-propetties-to-a-another-list-the-java-8-way
+        List<Pet> listPet =  listPetDTO
+                .stream()
+                .map(petDTO -> new Pet(
+                        petDTO.getType(),
+                        petDTO.getName(),
+                        customerService.findCustomerById(petDTO.getOwnerId()).get(),
+                        petDTO.getBirthDate(),
+                        petDTO.getNotes()))
+                .collect(Collectors.toList());
+
+        return listPet;
+    }
+
+    public Pet convertPetDTO2Pet(PetDTO petDTO){
+        List<PetDTO> listPetDTO = new ArrayList<>();
+        listPetDTO.add(petDTO);
+
+        List<Pet> listPet = convertListPetDTO2Pet(listPetDTO);
+
+        return listPet.get(0);
+    }
 }

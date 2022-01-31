@@ -56,6 +56,17 @@ public class EmployeeService {
         return employeeDTO;
     }
 
+    public Employee convertEmployeeDTO2Employee(EmployeeDTO employeeDTO){
+        Employee employee = new Employee();
+
+        employee.setId(employeeDTO.getId());
+        employee.setName(employeeDTO.getName());
+        employee.setSkills(employeeDTO.getSkills());
+        employee.setDaysAvailable(employeeDTO.getDaysAvailable());
+
+        return employee;
+    }
+
 
     public void setEmployeeAvailabilityById(Set<DayOfWeek> daysAvailable, Long employeeId){
         String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();

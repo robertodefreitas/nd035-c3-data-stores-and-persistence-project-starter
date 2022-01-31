@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -37,9 +38,14 @@ public class Schedule {
     @JoinTable(name = "schedule_employee", joinColumns = @JoinColumn(name = "id_schedule"), inverseJoinColumns = @JoinColumn(name = "ids_employee"))
     private List<Employee> employeeIds;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    // https://stackoverflow.com/questions/2302802/how-to-fix-the-hibernate-object-references-an-unsaved-transient-instance-save
+    // org.hibernate.TransientObjectException: object references an unsaved transient instance - save the transient instance before flushing
+    // cascade = CascadeType.ALL
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    //@ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "schedule_pet", joinColumns = @JoinColumn(name = "id_schedule"), inverseJoinColumns = @JoinColumn(name = "ids_pet"))
     private List<Pet> petIds;
+
 
     private LocalDate date;
 
@@ -70,6 +76,16 @@ public class Schedule {
         this.activities = activities;
     }
 
+    public Schedule(
+            List<Employee> employeeIds,
+            List<Pet> petIds,
+            LocalDate date,
+            Set<EmployeeSkill> activities) {
+        this.employeeIds = employeeIds;
+        this.petIds = petIds;
+        this.date = date;
+        this.activities = activities;
+    }
 
     /* getters and setters */
 
