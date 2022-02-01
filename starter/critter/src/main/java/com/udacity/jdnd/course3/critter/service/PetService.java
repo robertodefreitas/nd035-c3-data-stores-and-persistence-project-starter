@@ -98,6 +98,8 @@ public class PetService {
 
 
     public PetDTO convertPet2PetDTO(Pet pet){
+        String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
+
         PetDTO petDTO = new PetDTO();
 
         // Part 2 from 3 to resolve the issue by CritterFunctionalTest.java
@@ -110,9 +112,11 @@ public class PetService {
         petDTO.setId(pet.getId());
         petDTO.setType(pet.getType());
         petDTO.setName(pet.getName());
-        petDTO.setOwnerId(pet.getOwnerId().getId());
+        //petDTO.setOwnerId(pet.getOwnerId().getId());
         petDTO.setBirthDate(pet.getBirthDate());
-        petDTO.setNotes(petDTO.getNotes());
+        petDTO.setNotes(pet.getNotes());
+
+        logger.info("[{}] NAME: {}, NOTES: {}", methodeName, petDTO.getName(), petDTO.getNotes());
 
         return petDTO;
     }

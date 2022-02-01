@@ -1,7 +1,9 @@
 package com.udacity.jdnd.course3.critter.service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.assertj.core.util.Lists;
@@ -35,25 +37,65 @@ public class ScheduleService {
     public ScheduleDTO saveDTO(ScheduleDTO scheduleDTO){
         String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
 
-        //List<Long>:DTO -> List<Employee>:Entity
+        List<Long> listEmployeeIds = scheduleDTO.getEmployeeIds();
+        List<Long> listPetIds = scheduleDTO.getPetIds();
+
+        //DTO:List<Long> -> Entity:List<Employee>
         List<Employee> employeeList = new ArrayList<>();
         List<Pet> petList = new ArrayList<>();
 
-        if (!scheduleDTO.getEmployeeIds().isEmpty()){
-            logger.info("[{}] List<Long>: Employee IDs is not empty. SIZE:{}",
+
+        if (!listEmployeeIds.isEmpty()){
+            logger.info("[{}] List<Long>: Number of Employee IDs into Body (employeeIds): {}",
                     methodeName,
-                    scheduleDTO.getEmployeeIds().size());
-            EmployeeDTO employeeDTO = employeeService.findEmployeeById(scheduleDTO.getEmployeeIds().get(0));
-            employeeList.add(employeeService.convertEmployeeDTO2Employee(employeeDTO));
+                    listEmployeeIds.size());
+
+            /**
+             * https://stackoverflow.com/questions/62340699/fetch-all-objects-from-list-by-list-of-ids-using-java-8
+             * List<A> list2;
+             * Set<String> set = new HashSet<String>(codeList);
+             * List<A> res = list2.stream()
+             *         .filter(e -> set.contains(e.getCode())
+             *                 .collect(Collectors.toList());
+             */
+
+            // check all ids into the list
+            while( !listEmployeeIds.isEmpty() ) {
+                Long id = listEmployeeIds.get(0) ;
+                listEmployeeIds = listEmployeeIds.subList(1,listEmployeeIds.size());
+                logger.info("[{}] List<Long>: Employee ID: {}", methodeName, id);
+
+                EmployeeDTO employeeDTO = employeeService.findEmployeeById(id);
+                logger.info("[{}] findEmployeeById(id) ID: {}, NAME: {}", methodeName, id, employeeDTO.getName());
+                if (employeeDTO != null) {
+                    logger.info("[{}] NOT NULL ID: {}, {}", methodeName, id, employeeDTO.getName());
+                    employeeList.add(employeeService.convertEmployeeDTO2Employee(employeeDTO));
+                }
+            }
+
         }
 
-        if (!scheduleDTO.getPetIds().isEmpty()){
-            logger.info("[{}] List<Long>: Pet IDs is not empty. SIZE:{}",
+
+        if (!listPetIds.isEmpty()){
+            logger.info("[{}] List<Long>: Number of Pet IDs into Body (petIds): {}",
                     methodeName,
-                    scheduleDTO.getPetIds().size());
-            PetDTO petDTO = petService.findPetById(scheduleDTO.getPetIds().get(0));
-            petList.add(petService.convertPetDTO2Pet(petDTO));
+                    listPetIds.size());
+
+            // check all ids into the list
+            while( !listPetIds.isEmpty() ) {
+                Long id = listPetIds.get(0) ;
+                listPetIds = listPetIds.subList(1,listPetIds.size());
+                logger.info("[{}] List<Long>: Pet ID: {}", methodeName, id);
+
+                PetDTO petDTO = petService.findPetById(id);
+                logger.info("[{}] findPetById(id) ID: {}, NAME: {}, NOTES: {}", methodeName, id, petDTO.getName(), petDTO.getNotes());
+                if (petDTO != null) {
+                    logger.info("[{}] NOT NULL ID: {}, NAME: {}", methodeName, id, petDTO.getName());
+                    petList.add(petService.convertPetDTO2Pet(petDTO));
+                }
+            }
         }
+
 
         Schedule schedule = new Schedule(
                 employeeList,

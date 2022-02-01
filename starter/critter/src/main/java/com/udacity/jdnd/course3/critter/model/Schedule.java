@@ -18,6 +18,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.MapsId;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 import com.udacity.jdnd.course3.critter.list.EmployeeSkill;
@@ -35,17 +37,24 @@ public class Schedule {
     private Long id;
 
     @ManyToMany(fetch = FetchType.LAZY)
+    //@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "schedule_employee", joinColumns = @JoinColumn(name = "id_schedule"), inverseJoinColumns = @JoinColumn(name = "ids_employee"))
     private List<Employee> employeeIds;
 
-    // https://stackoverflow.com/questions/2302802/how-to-fix-the-hibernate-object-references-an-unsaved-transient-instance-save
-    // org.hibernate.TransientObjectException: object references an unsaved transient instance - save the transient instance before flushing
-    // cascade = CascadeType.ALL
+//    // org.hibernate.TransientObjectException: object references an unsaved transient instance - save the transient instance before flushing
+//    // https://stackoverflow.com/questions/2302802/how-to-fix-the-hibernate-object-references-an-unsaved-transient-instance-save
+//    @ManyToMany(fetch = FetchType.LAZY) // doesn'T work -> save the transient instance before flushing
+//    // Solution -> cascade = CascadeType.ALL , s. below
+//    @JoinTable(name = "schedule_pet", joinColumns = @JoinColumn(name = "id_schedule"), inverseJoinColumns = @JoinColumn(name = "ids_pet"))
+//    private List<Pet> petIds;
+
+    // This doesn't work like employeeIds, by employeeIds sprimg-boot save the ids into a new table schedule_employee
+    // but it doesn't create new rows by the entity Employee -> OK/GOOD/RIGHT
+    // spring-boot adds new rows to the entity Pet -> this is not the expected result -> NOK/BAD/WRONG
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    //@ManyToMany(fetch = FetchType.LAZY)
+    //@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     @JoinTable(name = "schedule_pet", joinColumns = @JoinColumn(name = "id_schedule"), inverseJoinColumns = @JoinColumn(name = "ids_pet"))
     private List<Pet> petIds;
-
 
     private LocalDate date;
 
@@ -83,6 +92,7 @@ public class Schedule {
             Set<EmployeeSkill> activities) {
         this.employeeIds = employeeIds;
         this.petIds = petIds;
+        //this.petIds = new ArrayList<Pet>();
         this.date = date;
         this.activities = activities;
     }
