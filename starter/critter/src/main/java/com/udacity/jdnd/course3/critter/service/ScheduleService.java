@@ -2,7 +2,9 @@ package com.udacity.jdnd.course3.critter.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import org.assertj.core.util.Lists;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,6 +68,74 @@ public class ScheduleService {
         return scheduleDTO;
     }
 
+    // methode findAll() return needs: Iterable<T> findAll(); and not List<T>
+    public List<ScheduleDTO> findAllSchedules(){
+        /**
+         * TO-DO 1: we need to convert an Iterator to a List
+         * because ScheduleController needs a List<ScheduleDTO>
+         * SOLUTION: use <artifactId>guava</artifactId>
+         * Lists.newArrayList(...)
+         * https://www.baeldung.com/java-iterable-to-collection
+         */
+        List<Schedule> listResult = Lists.newArrayList(scheduleRepository.findAll());
 
+        /**
+         * TO-DO 2: we need to convert Customer to CustomerDTO
+         * SOLUTION: create methode convertCustomer2CustomerDTO()
+         */
+        return convertListSchedule2ScheduleDTO(listResult);
+    }
+
+    public ScheduleDTO convertSchedule2ScheduleDTO(Schedule schedule){
+        ScheduleDTO scheduleDTO = new ScheduleDTO();
+
+        scheduleDTO.setId(schedule.getId());
+        scheduleDTO.setDate(schedule.getDate());
+        scheduleDTO.setActivities(schedule.getActivities());
+
+        /**
+         * WRONG: scheduleDTO.setEmployeeIds(schedule.getEmployeeIds());
+         * We need to convert a List<Object> to a List<Long>
+         * with the ids of the Objects
+         * SOLUTION BELOW:
+         * ## Entity/Repository -> DTO ##
+         */
+        List<Employee> listEmployee = schedule.getEmployeeIds();
+        if(listEmployee != null){
+            List<Long> listLongEmployeeIds = new ArrayList<>();
+            for (Employee employee : listEmployee){
+                listLongEmployeeIds.add(employee.getId());
+            }
+            scheduleDTO.setEmployeeIds(listLongEmployeeIds);
+        }
+
+        /**
+         * WRONG: scheduleDTO.setPetIds(schedule.getPetIds());;
+         * We need to convert a List<Object> to a List<Long>
+         * with the ids of the Objects
+         * SOLUTION BELOW:
+         * ## Entity/Repository -> DTO ##
+         */
+        List<Pet> listPet = schedule.getPetIds();
+        if(listPet != null){
+            List<Long> listLongPetIds = new ArrayList<>();
+            for (Pet pet : listPet){
+                listLongPetIds.add(pet.getId());
+            }
+            scheduleDTO.setPetIds(listLongPetIds);
+        }
+
+        return scheduleDTO;
+    }
+
+
+    // list stream (elegant) + lambda expressions:
+    // https://winterbe.com/posts/2014/07/31/java8-stream-tutorial-examples/
+    public List<ScheduleDTO> convertListSchedule2ScheduleDTO(List<Schedule> listSchedule){
+        return listSchedule
+                .stream()
+                .map(this::convertSchedule2ScheduleDTO)
+                .collect(Collectors.toList());
+    }
 
 }

@@ -61,7 +61,7 @@ public class CustomerService {
         List<Customer> listResult = Lists.newArrayList(customerRepository.findAll());
 
         //return convertListCustomer2CustomerDTO(listResult);
-        return convertListCustomer2CustomerDTOelegant(listResult);
+        return convertListCustomer2CustomerDTO(listResult);
     }
 
 
@@ -83,7 +83,9 @@ public class CustomerService {
 //        return listCustomerDTO;
 //    }
 //
-//    // Nice way / elegant
+//    // Nice way
+//    // list stream (elegant) + lambda expressions:
+//    // https://winterbe.com/posts/2014/07/31/java8-stream-tutorial-examples/
 //    public List<CustomerDTO> convertListCustomer2CustomerDTOelegant(List<Customer> listCustomer){
 //
 //        // https://stackoverflow.com/questions/40035102/how-to-convert-a-list-with-properties-to-a-another-list-the-java-8-way
@@ -131,7 +133,9 @@ public class CustomerService {
 
     // Part 3 from 3 to resolve the issue by CritterFunctionalTest.java
     // java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
-    public List<CustomerDTO> convertListCustomer2CustomerDTOelegant(List<Customer> listCustomer){
+    // list stream (elegant) + lambda expressions:
+    // https://winterbe.com/posts/2014/07/31/java8-stream-tutorial-examples/
+    public List<CustomerDTO> convertListCustomer2CustomerDTO(List<Customer> listCustomer){
         return listCustomer
                 .stream()
                 .map(this::convertCustomer2CustomerDTO)

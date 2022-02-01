@@ -27,7 +27,6 @@ public class ScheduleController {
      */
     /* POST BODY raw:JSON
     {
-        "id": 0,
         "employeeIds": [1],
         "petIds": [1,2],
         "date": "2022-01-31",
@@ -48,11 +47,8 @@ public class ScheduleController {
         String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
         logger.info("[{}] GET /schedule", methodeName);
 
-        /**
-         * TO-DO
-         */
-
-        throw new UnsupportedOperationException();
+        return scheduleService.findAllSchedules();
+        //throw new UnsupportedOperationException();
     }
 
     @GetMapping("/pet/{petId}")
