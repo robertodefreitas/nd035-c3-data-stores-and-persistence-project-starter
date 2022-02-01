@@ -86,15 +86,12 @@ public class EmployeeController {
 
 
     @GetMapping("/employee/availability")
-    public List<EmployeeDTO> findEmployeesForService(@RequestBody EmployeeRequestDTO employeeDTO) {
+    public List<EmployeeDTO> findEmployeesForService(@RequestBody EmployeeRequestDTO employeeRequestDTO) {
         String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
         logger.info("[{}] GET /user/employee/availability", methodeName);
 
-        /**
-         * TO-DO
-         */
-
-        throw new UnsupportedOperationException();
+        return employeeService.findEmployeesForService(employeeRequestDTO);
+        //throw new UnsupportedOperationException();
     }
 
 }
