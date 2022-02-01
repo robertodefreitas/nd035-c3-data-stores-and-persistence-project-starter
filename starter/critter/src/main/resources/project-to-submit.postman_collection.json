@@ -9,7 +9,7 @@
 			"name": "DONE",
 			"item": [
 				{
-					"name": "saveCustomer - saveDTO",
+					"name": "saveCustomer - saveDTO 1",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -22,7 +22,43 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"Aleex\",\r\n  \"phoneNumber\": \"1234567890\",\r\n  \"notes\": \"this is a note!\"\r\n}",
+							"raw": "{\r\n  \"name\": \"Alex\",\r\n  \"phoneNumber\": \"1234567890\",\r\n  \"notes\": \"this is a note!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8311/user/customer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8311",
+							"path": [
+								"user",
+								"customer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "saveCustomer - saveDTO 2 Copy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Blex\",\r\n  \"phoneNumber\": \"1234567899\",\r\n  \"notes\": \"this is a note2!\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -118,7 +154,7 @@
 					"response": []
 				},
 				{
-					"name": "saveEmployee - saveDTO",
+					"name": "saveEmployee - saveDTO 1",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -154,7 +190,43 @@
 					"response": []
 				},
 				{
-					"name": "savePet - saveDTO",
+					"name": "saveEmployee - saveDTO 2",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Rebekka\",\r\n  \"skills\": [\"PETTING\", \"FEEDING\"],\r\n  \"daysAvailable\": [\"MONDAY\", \"SUNDAY\", \"TUESDAY\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8311/user/employee",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8311",
+							"path": [
+								"user",
+								"employee"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "savePet - saveDTO 1",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -202,7 +274,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"type\": \"CAT\",\r\n  \"name\": \"Kilo2\",\r\n  \"birthDate\": \"\",\r\n  \"notes\": \"\", \r\n  \"ownerId\": \"\"\r\n}",
+							"raw": "{\r\n  \"type\": \"DOG\",\r\n  \"name\": \"Kilo2\",\r\n  \"birthDate\": \"2022-12-16T04:43:57.222Z\",\r\n  \"notes\": \"Notes bla bla\", \r\n  \"ownerId\": \"2\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -218,6 +290,111 @@
 							"port": "8311",
 							"path": [
 								"pet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "savePet - saveDTO 3 empty",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"type\": \"CAT\",\r\n  \"name\": \"Kilo3\",\r\n  \"birthDate\": \"\",\r\n  \"notes\": \"\", \r\n  \"ownerId\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8311/pet",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8311",
+							"path": [
+								"pet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createSchedule - saveDTO 1",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"employeeIds\": [1,2],\r\n    \"petIds\": [1,2],\r\n    \"date\": \"2022-01-31\",\r\n    \"activities\": [\"PETTING\", \"FEEDING\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8311/schedule",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8311",
+							"path": [
+								"schedule"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createSchedule - saveDTO 2",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"employeeIds\": [2,3],\r\n    \"petIds\": [1,3],\r\n    \"date\": \"2022-01-01\",\r\n    \"activities\": [\"PETTING\", \"FEEDING\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8311/schedule",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8311",
+							"path": [
+								"schedule"
 							]
 						}
 					},
@@ -384,6 +561,84 @@
 					"response": []
 				},
 				{
+					"name": "getAllSchedules - findAllSchedules",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8311/schedule",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8311",
+							"path": [
+								"schedule"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findEmployeesForService - OPEN",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"date\": \"2019-12-17\",\n\t\"skills\": [\"FEEDING\",\"PETTING\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8311/user/employee/availability",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8311",
+							"path": [
+								"user",
+								"employee",
+								"availability"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "setAvailability - setEmployeeAvailabilityById",
 					"request": {
 						"method": "PUT",
@@ -461,43 +716,7 @@
 		},
 		{
 			"name": "WIP",
-			"item": [
-				{
-					"name": "createSchedule - saveDTO",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"id\": 1,\r\n    \"employeeIds\": [1],\r\n    \"petIds\": [1,2],\r\n    \"date\": \"2022-01-31\",\r\n    \"activities\": [\"PETTING\", \"FEEDING\"]\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8311/schedule",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8311",
-							"path": [
-								"schedule"
-							]
-						}
-					},
-					"response": []
-				}
-			]
+			"item": []
 		},
 		{
 			"name": "OPEN",
@@ -617,46 +836,6 @@
 								"schedule",
 								"customer",
 								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "findEmployeesForService - OPEN",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"date\": \"2019-12-17\",\n\t\"skills\": [\"PETTING\", \"FEEDING\"]\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8311/user/employee/availability",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8311",
-							"path": [
-								"user",
-								"employee",
-								"availability"
 							]
 						}
 					},
