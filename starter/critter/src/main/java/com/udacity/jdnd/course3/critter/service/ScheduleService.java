@@ -130,8 +130,8 @@ public class ScheduleService {
 
     public List<ScheduleDTO> findAllSchedulesDTO(){
         /**
-         * TO-DO 2: we need to convert Customer to CustomerDTO
-         * SOLUTION: create methode convertCustomer2CustomerDTO()
+         * TO-DO 2: we need to convert Schedule to ScheduleDTO
+         * SOLUTION: create methode convertListSchedule2ScheduleDTO()
          */
         return convertListSchedule2ScheduleDTO(findAllSchedules());
     }
