@@ -599,7 +599,7 @@
 					"response": []
 				},
 				{
-					"name": "findEmployeesForService - OPEN",
+					"name": "findEmployeesForService",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -716,7 +716,48 @@
 		},
 		{
 			"name": "WIP",
-			"item": []
+			"item": [
+				{
+					"name": "getScheduleForEmployee - OPEN",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8311/schedule/employee/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8311",
+							"path": [
+								"schedule",
+								"employee",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "OPEN",
@@ -755,46 +796,6 @@
 							"path": [
 								"schedule",
 								"pet",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "getScheduleForEmployee - OPEN",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8311/schedule/employee/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8311",
-							"path": [
-								"schedule",
-								"employee",
 								"1"
 							]
 						}
