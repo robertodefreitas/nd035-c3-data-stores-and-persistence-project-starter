@@ -45,7 +45,7 @@
 					"response": []
 				},
 				{
-					"name": "saveCustomer - saveDTO 2 Copy",
+					"name": "saveCustomer - saveDTO 2",
 					"request": {
 						"method": "POST",
 						"header": [

@@ -35,16 +35,21 @@ public class Schedule {
     private Long id;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    //@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    //@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL) -> WRONG
     @JoinTable(name = "schedule_employee", joinColumns = @JoinColumn(name = "id_schedule"), inverseJoinColumns = @JoinColumn(name = "ids_employee"))
     private List<Employee> employeeIds;
 
-//    // org.hibernate.TransientObjectException: object references an unsaved transient instance - save the transient instance before flushing
+//    // ISSUE: org.hibernate.TransientObjectException: object references an unsaved transient instance - save the transient instance before flushing
 //    // https://stackoverflow.com/questions/2302802/how-to-fix-the-hibernate-object-references-an-unsaved-transient-instance-save
 //    @ManyToMany(fetch = FetchType.LAZY) // doesn'T work -> save the transient instance before flushing
 //    // Solution -> cascade = CascadeType.ALL , s. below
 //    @JoinTable(name = "schedule_pet", joinColumns = @JoinColumn(name = "id_schedule"), inverseJoinColumns = @JoinColumn(name = "ids_pet"))
 //    private List<Pet> petIds;
+
+    // ISSUE: org.hibernate.PersistentObjectException: detached entity passed to persist
+    //@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    //private List<Pet> petIds;
+    // Solution: ALL -> MERGE (s. Below)
 
     // This doesn't work like employeeIds, by employeeIds sprimg-boot save the ids into a new table schedule_employee
     // but it doesn't create new rows by the entity Employee -> OK/GOOD/RIGHT
@@ -66,7 +71,6 @@ public class Schedule {
     @Enumerated(EnumType.STRING)
     // Attribute [com.udacity.jdnd.course3.critter.model.Schedule.activities] was annotated as enumerated, but its java type is not an enum [java.util.Set]
     private Set<EmployeeSkill> activities;
-    //private EmployeeSkill activities;
 
 
     /* constructor */
