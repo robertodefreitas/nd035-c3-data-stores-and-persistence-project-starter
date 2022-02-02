@@ -1,5 +1,6 @@
 package com.udacity.jdnd.course3.critter.service;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -12,6 +13,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.udacity.jdnd.course3.critter.dto.PetDTO;
 import com.udacity.jdnd.course3.critter.dto.ScheduleDTO;
 import com.udacity.jdnd.course3.critter.dto.user.EmployeeDTO;
@@ -133,7 +136,47 @@ public class ScheduleService {
         return convertListSchedule2ScheduleDTO(listResult);
     }
 
-    public List<ScheduleDTO> findScheduleForEmployee(long employeeId) {
+    /**
+     * WIP
+     */
+    public List<ScheduleDTO> findScheduleForEmployee(Long employeeId) {
+        String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
+
+        EmployeeDTO employeeDTO = employeeService.findEmployeeById(employeeId);
+        List<ScheduleDTO> listScheduleDTO = findAllSchedules();
+        logger.info("[{}] listScheduleDTO SIZE: {}",methodeName, listScheduleDTO.size());
+
+        /**
+         * to see the object value from ScheduleDTO
+         * in JSON format
+         * https://stackoverflow.com/questions/14228912/how-to-convert-list-to-json-in-java
+         * <groupId>com.fasterxml.jackson.core</groupId>
+         * <artifactId>jackson-databind</artifactId>
+         */
+        try {
+            // https://stackoverflow.com/questions/27952472/serialize-deserialize-java-8-java-time-with-jackson-json-mapper
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.findAndRegisterModules(); // because of java.time.LocalDate AND <artifactId>jackson-datatype-jsr310</artifactId>
+            String jsonString = objectMapper.writeValueAsString(listScheduleDTO.get(0));
+
+            logger.info("[{}] ScheduleDTO[0] JSON {}",methodeName, jsonString);
+
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        // list stream / lambda
+        // https://www.baeldung.com/find-list-element-java
+        // https://stackoverflow.com/questions/33992479/java-8-stream-api-to-find-unique-object-matching-a-property-value
+//        List<ScheduleDTO> listScheduleDTO = findAllSchedules()
+//                .stream()
+//                .filter(scheduleDTO -> scheduleDTO.getEmployeeIds().equals(employeeId))
+//                .collect(Collectors.toList());
+
+        return listScheduleDTO;
+    }
+
+    public List<ScheduleDTO> findScheduleForPet(Long petId){
         String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
         logger.info("[{}] ",methodeName);
 
@@ -146,20 +189,7 @@ public class ScheduleService {
         return listScheduleDTO;
     }
 
-    public List<ScheduleDTO> findScheduleForPet(long petId){
-        String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
-        logger.info("[{}] ",methodeName);
-
-        List<ScheduleDTO> listScheduleDTO = new ArrayList<ScheduleDTO>();
-
-        /**
-         * TO-DO
-         */
-
-        return listScheduleDTO;
-    }
-
-    public List<ScheduleDTO> findScheduleForCustomer(long customerId) {
+    public List<ScheduleDTO> findScheduleForCustomer(Long customerId) {
         String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
         logger.info("[{}] ",methodeName);
 

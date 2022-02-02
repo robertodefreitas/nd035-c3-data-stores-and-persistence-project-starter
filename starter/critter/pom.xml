@@ -43,6 +43,10 @@
 			<scope>runtime</scope>
 		</dependency>
 
+		<!--
+			to convert an Iterator to a List
+			ScheduleService.findAllSchedules
+		-->
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
@@ -82,17 +86,36 @@
 			<artifactId>springfox-boot-starter</artifactId>
 			<version>${springfox-swagger.version}</version>
 		</dependency>
+
+		<!-- Jackson -->
+		<!--
+		    jackson provides very helpful and lightweight API to convert Object to JSON and vise versa.
+		    ObjectMapper objectMapper = new ObjectMapper();
+		-->
 		<dependency>
-			<groupId>org.jetbrains</groupId>
-			<artifactId>annotations</artifactId>
-			<version>RELEASE</version>
-			<scope>compile</scope>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.jetbrains</groupId>
-			<artifactId>annotations</artifactId>
-			<version>RELEASE</version>
-			<scope>compile</scope>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+		</dependency>
+		<!--
+			because of date/time type `java.time.LocalDate` not supported by default, ScheduleService.findScheduleForEmployee
+			https://stackoverflow.com/questions/27952472/serialize-deserialize-java-8-java-time-with-jackson-json-mapper
+			https://www.baeldung.com/spring-boot-customize-jackson-objectmapper
+			USAGE:
+			ObjectMapper objectMapper = new ObjectMapper();
+			objectMapper.findAndRegisterModules();
+			...
+		-->
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-jsr310</artifactId>
 		</dependency>
 
 	</dependencies>
