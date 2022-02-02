@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 import com.udacity.jdnd.course3.critter.dto.PetDTO;
 import com.udacity.jdnd.course3.critter.dto.ScheduleDTO;
 import com.udacity.jdnd.course3.critter.dto.user.EmployeeDTO;
@@ -127,6 +128,37 @@ public class ScheduleService {
          */
         return convertListSchedule2ScheduleDTO(listResult);
     }
+
+    public List<ScheduleDTO> findScheduleForPet(long petId){
+        List<ScheduleDTO> listScheduleDTO = new ArrayList<ScheduleDTO>();
+
+        /**
+         * TO-DO
+         */
+
+        return listScheduleDTO;
+    }
+
+    public List<ScheduleDTO> findScheduleForEmployee(long employeeId) {
+        List<ScheduleDTO> listScheduleDTO = new ArrayList<ScheduleDTO>();
+
+        /**
+         * TO-DO
+         */
+
+        return listScheduleDTO;
+    }
+
+    public List<ScheduleDTO> findScheduleForCustomer(long customerId) {
+        List<ScheduleDTO> listScheduleDTO = new ArrayList<ScheduleDTO>();
+
+        /**
+         * TO-DO
+         */
+
+        return listScheduleDTO;
+    }
+
 
     public ScheduleDTO convertSchedule2ScheduleDTO(Schedule schedule){
         ScheduleDTO scheduleDTO = new ScheduleDTO();

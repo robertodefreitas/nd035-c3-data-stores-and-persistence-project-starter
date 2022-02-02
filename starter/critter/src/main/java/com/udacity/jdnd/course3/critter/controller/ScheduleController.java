@@ -56,11 +56,8 @@ public class ScheduleController {
         String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
         logger.info("[{}] GET /schedule/pet/{}", methodeName, petId);
 
-        /**
-         * TO-DO
-         */
-
-        throw new UnsupportedOperationException();
+        return scheduleService.findScheduleForPet(petId);
+        //throw new UnsupportedOperationException();
     }
 
     @GetMapping("/employee/{employeeId}")
@@ -68,11 +65,8 @@ public class ScheduleController {
         String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
         logger.info("[{}] GET /schedule/employee/{}", methodeName, employeeId);
 
-        /**
-         * TO-DO
-         */
-
-        throw new UnsupportedOperationException();
+        return scheduleService.findScheduleForEmployee(employeeId);
+        //throw new UnsupportedOperationException();
     }
 
     @GetMapping("/customer/{customerId}")
@@ -80,10 +74,7 @@ public class ScheduleController {
         String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
         logger.info("[{}] GET /schedule/customer/{}", methodeName, customerId);
 
-        /**
-         * TO-DO
-         */
-
-        throw new UnsupportedOperationException();
+        return scheduleService.findScheduleForCustomer(customerId);
+        //throw new UnsupportedOperationException();
     }
 }
