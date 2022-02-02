@@ -47,7 +47,7 @@ public class ScheduleController {
         String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
         logger.info("[{}] GET /schedule", methodeName);
 
-        return scheduleService.findAllSchedules();
+        return scheduleService.findAllSchedulesDTO();
         //throw new UnsupportedOperationException();
     }
 

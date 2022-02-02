@@ -1,10 +1,7 @@
 package com.udacity.jdnd.course3.critter.service;
 
-import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.assertj.core.util.Lists;
@@ -118,7 +115,7 @@ public class ScheduleService {
     }
 
     // methode findAll() return needs: Iterable<T> findAll(); and not List<T>
-    public List<ScheduleDTO> findAllSchedules(){
+    public List<Schedule> findAllSchedules(){
         /**
          * TO-DO 1: we need to convert an Iterator to a List
          * because ScheduleController needs a List<ScheduleDTO>
@@ -128,77 +125,103 @@ public class ScheduleService {
          */
         List<Schedule> listResult = Lists.newArrayList(scheduleRepository.findAll());
 
+        return listResult;
+    }
+
+    public List<ScheduleDTO> findAllSchedulesDTO(){
         /**
          * TO-DO 2: we need to convert Customer to CustomerDTO
          * SOLUTION: create methode convertCustomer2CustomerDTO()
          */
-        return convertListSchedule2ScheduleDTO(listResult);
+        return convertListSchedule2ScheduleDTO(findAllSchedules());
     }
 
-    /**
-     * WIP
-     */
     public List<ScheduleDTO> findScheduleForEmployee(Long employeeId) {
         String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
 
-        //EmployeeDTO employeeDTO = employeeService.findEmployeeById(employeeId);
-        List<ScheduleDTO> listScheduleDTO = findAllSchedules();
-        logger.info("[{}] listScheduleDTO SIZE: {}",methodeName, listScheduleDTO.size());
+        List<Schedule> listSchedule = findAllSchedules();
+        List<Schedule> listScheduleResult = new ArrayList<>();
+        logger.info("[{}] listSchedule SIZE TOTAL: {}",methodeName, listSchedule.size());
 
-        /**
-         * to see the object value from ScheduleDTO
-         * in JSON format
-         * https://stackoverflow.com/questions/14228912/how-to-convert-list-to-json-in-java
-         * <groupId>com.fasterxml.jackson.core</groupId>
-         * <artifactId>jackson-databind</artifactId>
-         */
-        try {
-            // https://stackoverflow.com/questions/27952472/serialize-deserialize-java-8-java-time-with-jackson-json-mapper
-            ObjectMapper objectMapper = new ObjectMapper();
-            objectMapper.findAndRegisterModules(); // because of java.time.LocalDate AND <artifactId>jackson-datatype-jsr310</artifactId>
-            String jsonString = objectMapper.writeValueAsString(listScheduleDTO.get(0));
+        // loop to find all employees into the schedule list
+        for (Schedule schedule: listSchedule) {
+            List<Employee> listEmployees = schedule.getEmployeeIds();
+            for (Employee employee: listEmployees) {
+                if (employee.getId() == employeeId) {
+                    listScheduleResult.add(schedule);
 
-            logger.info("[{}] ScheduleDTO[0] JSON {}",methodeName, jsonString);
+                    /**
+                     * to see the object value from object employee
+                     * in JSON format
+                     * https://stackoverflow.com/questions/14228912/how-to-convert-list-to-json-in-java
+                     * <groupId>com.fasterxml.jackson.core</groupId>
+                     * <artifactId>jackson-databind</artifactId>
+                     */
+                    try {
+                        // https://stackoverflow.com/questions/27952472/serialize-deserialize-java-8-java-time-with-jackson-json-mapper
+                        ObjectMapper objectMapper = new ObjectMapper();
+                        objectMapper.findAndRegisterModules(); // because of java.time.LocalDate AND <artifactId>jackson-datatype-jsr310</artifactId>
+                        String jsonString = objectMapper.writeValueAsString(employee);
 
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
+                        logger.info("[{}] ScheduleID:{} [BREAK] employee JSON {}",methodeName, schedule.getId(), jsonString);
+                    }
+                    catch (JsonProcessingException jpe) {
+                        jpe.printStackTrace();
+                    }
+                    //        catch (JsonMappingException jme) {
+                    //            jme.printStackTrace();
+                    //        }
+
+                    break;
+                }
+            }
         }
 
-        // list stream / lambda
-        // https://www.baeldung.com/find-list-element-java
-        // https://stackoverflow.com/questions/33992479/java-8-stream-api-to-find-unique-object-matching-a-property-value
-//        List<ScheduleDTO> listScheduleDTO = findAllSchedules()
-//                .stream()
-//                .filter(scheduleDTO -> scheduleDTO.getEmployeeIds().equals(employeeId))
-//                .collect(Collectors.toList());
-
-        return listScheduleDTO;
+        return convertListSchedule2ScheduleDTO(listScheduleResult);
     }
 
     public List<ScheduleDTO> findScheduleForPet(Long petId){
         String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
-        logger.info("[{}] ",methodeName);
 
-        List<ScheduleDTO> listScheduleDTO = new ArrayList<ScheduleDTO>();
+        List<Schedule> listSchedule = findAllSchedules();
+        List<Schedule> listScheduleResult = new ArrayList<>();
+        logger.info("[{}] listSchedule SIZE TOTAL: {}",methodeName, listSchedule.size());
 
-        /**
-         * TO-DO
-         */
+        // loop to find all pets into the schedule list
+        for (Schedule schedule: listSchedule) {
+            List<Pet> listPet = schedule.getPetIds();
+            for (Pet pet: listPet) {
+                if (pet.getId() == petId) {
+                    listScheduleResult.add(schedule);
+                    logger.info("[{}] ScheduleID:{} [BREAK]",methodeName, schedule.getId());
+                    break;
+                }
+            }
+        }
 
-        return listScheduleDTO;
+        return convertListSchedule2ScheduleDTO(listScheduleResult);
     }
 
     public List<ScheduleDTO> findScheduleForCustomer(Long customerId) {
         String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
-        logger.info("[{}] ",methodeName);
 
-        List<ScheduleDTO> listScheduleDTO = new ArrayList<ScheduleDTO>();
+        List<Schedule> listSchedule = findAllSchedules();
+        List<Schedule> listScheduleResult = new ArrayList<>();
+        logger.info("[{}] listSchedule SIZE TOTAL: {}",methodeName, listSchedule.size());
 
-        /**
-         * TO-DO
-         */
+        // loop to find all pets into the schedule list
+        for (Schedule schedule: listSchedule) {
+            List<Pet> listPet = schedule.getPetIds();
+            for (Pet pet: listPet) {
+                if (pet.getOwnerId().getId() == customerId) {
+                    listScheduleResult.add(schedule);
+                    logger.info("[{}] ScheduleID:{} [BREAK]",methodeName, schedule.getId());
+                    break;
+                }
+            }
+        }
 
-        return listScheduleDTO;
+        return convertListSchedule2ScheduleDTO(listScheduleResult);
     }
 
 
@@ -224,7 +247,9 @@ public class ScheduleService {
             }
             scheduleDTO.setEmployeeIds(listLongEmployeeIds);
         }
-//        // list stream with lambda
+        // https://www.baeldung.com/find-list-element-java
+        // https://stackoverflow.com/questions/33992479/java-8-stream-api-to-find-unique-object-matching-a-property-value
+        // list stream with lambda
 //        List<Long> listLongEmployeeIds = schedule.getEmployeeIds()
 //                .stream()
 //                .map(Employee::getId)
@@ -247,7 +272,9 @@ public class ScheduleService {
             }
             scheduleDTO.setPetIds(listLongPetIds);
         }
-//        // list stream with lambda
+        // https://www.baeldung.com/find-list-element-java
+        // https://stackoverflow.com/questions/33992479/java-8-stream-api-to-find-unique-object-matching-a-property-value
+        // list stream with lambda
 //        List<Long> listLongPetIds = schedule.getPetIds()
 //                .stream()
 //                .map(Pet::getId)
