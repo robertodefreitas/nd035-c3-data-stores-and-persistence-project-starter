@@ -81,42 +81,6 @@
 					"response": []
 				},
 				{
-					"name": "saveCustomer - save PORT:8399",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"Alex\",\r\n  \"phoneNumber\": \"1234567890\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8399/user/customer",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8399",
-							"path": [
-								"user",
-								"customer"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "getEmployee - findEmployeeById",
 					"request": {
 						"method": "POST",
@@ -639,6 +603,126 @@
 					"response": []
 				},
 				{
+					"name": "getScheduleForEmployee - findScheduleForEmployee",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8311/schedule/employee/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8311",
+							"path": [
+								"schedule",
+								"employee",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getScheduleForPet - findScheduleForPet",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8311/schedule/pet/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8311",
+							"path": [
+								"schedule",
+								"pet",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getScheduleForCustomer - findScheduleForCustomer",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8311/schedule/customer/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8311",
+							"path": [
+								"schedule",
+								"customer",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "setAvailability - setEmployeeAvailabilityById",
 					"request": {
 						"method": "PUT",
@@ -716,133 +800,11 @@
 		},
 		{
 			"name": "WIP",
-			"item": [
-				{
-					"name": "getScheduleForEmployee - OPEN",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8311/schedule/employee/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8311",
-							"path": [
-								"schedule",
-								"employee",
-								"1"
-							]
-						}
-					},
-					"response": []
-				}
-			]
+			"item": []
 		},
 		{
 			"name": "OPEN",
-			"item": [
-				{
-					"name": "getScheduleForPet - OPEN",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8311/schedule/pet/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8311",
-							"path": [
-								"schedule",
-								"pet",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "getScheduleForCustomer - OPEN",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8311/schedule/customer/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8311",
-							"path": [
-								"schedule",
-								"customer",
-								"1"
-							]
-						}
-					},
-					"response": []
-				}
-			]
+			"item": []
 		}
 	]
 }
