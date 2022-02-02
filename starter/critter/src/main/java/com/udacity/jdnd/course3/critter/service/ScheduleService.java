@@ -12,7 +12,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.udacity.jdnd.course3.critter.dto.PetDTO;
@@ -142,7 +141,7 @@ public class ScheduleService {
     public List<ScheduleDTO> findScheduleForEmployee(Long employeeId) {
         String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
 
-        EmployeeDTO employeeDTO = employeeService.findEmployeeById(employeeId);
+        //EmployeeDTO employeeDTO = employeeService.findEmployeeById(employeeId);
         List<ScheduleDTO> listScheduleDTO = findAllSchedules();
         logger.info("[{}] listScheduleDTO SIZE: {}",methodeName, listScheduleDTO.size());
 
@@ -225,6 +224,13 @@ public class ScheduleService {
             }
             scheduleDTO.setEmployeeIds(listLongEmployeeIds);
         }
+//        // list stream with lambda
+//        List<Long> listLongEmployeeIds = schedule.getEmployeeIds()
+//                .stream()
+//                .map(Employee::getId)
+//                .collect(Collectors.toList());
+//        scheduleDTO.setEmployeeIds(listLongEmployeeIds);
+
 
         /**
          * WRONG: scheduleDTO.setPetIds(schedule.getPetIds());;
@@ -241,6 +247,12 @@ public class ScheduleService {
             }
             scheduleDTO.setPetIds(listLongPetIds);
         }
+//        // list stream with lambda
+//        List<Long> listLongPetIds = schedule.getPetIds()
+//                .stream()
+//                .map(Pet::getId)
+//                .collect(Collectors.toList());
+//        scheduleDTO.setPetIds(listLongPetIds);
 
         return scheduleDTO;
     }
