@@ -26,7 +26,7 @@ public class Customer {
     // https://blog.eyallupu.com/2011/01/hibernatejpa-identity-generators.html
     // https://docs.oracle.com/javaee/5/api/javax/persistence/SequenceGenerator.html
     @SequenceGenerator(name="seq-gen-customer", sequenceName="SEQ_GEN_CUSTOMER", initialValue=1, allocationSize=10)
-    @GeneratedValue(strategy=GenerationType.TABLE, generator="seq-gen-customer")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq-gen-customer")
     private Long id;
 
     @JsonView(Views.Public.class)
@@ -44,9 +44,7 @@ public class Customer {
     // added CascadeType.REMOVE to automatically clear any associated Pet when removed
     // see: private Customer ownerId; in Class Pet
     // this doesn't create a column on the table customer
-    @OneToMany(fetch = FetchType.LAZY,
-               cascade = CascadeType.ALL,
-               mappedBy = "ownerId")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "ownerId")
     private List<Pet> petIds;
 
 

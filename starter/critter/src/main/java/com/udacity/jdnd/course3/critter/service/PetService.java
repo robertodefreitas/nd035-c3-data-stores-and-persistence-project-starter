@@ -223,6 +223,9 @@ public class PetService {
 
         List<Pet> listPet = convertListPetDTO2Pet(listPetDTO);
 
-        return listPet.get(0);
+        Pet pet = listPet.get(0);
+        pet.setId(petDTO.getId());
+
+        return pet;
     }
 }

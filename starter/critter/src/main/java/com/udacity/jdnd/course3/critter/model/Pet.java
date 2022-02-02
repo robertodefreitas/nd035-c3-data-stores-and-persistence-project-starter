@@ -25,7 +25,7 @@ public class Pet {
     // https://blog.eyallupu.com/2011/01/hibernatejpa-identity-generators.html
     // https://docs.oracle.com/javaee/5/api/javax/persistence/SequenceGenerator.html
     @SequenceGenerator(name="seq-gen-pet", sequenceName="SEQ_GEN_PET", initialValue=1, allocationSize=10)
-    @GeneratedValue(strategy= GenerationType.TABLE, generator="seq-gen-pet")
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="seq-gen-pet")
     private Long id;
 
     @JsonView(Views.Public.class)

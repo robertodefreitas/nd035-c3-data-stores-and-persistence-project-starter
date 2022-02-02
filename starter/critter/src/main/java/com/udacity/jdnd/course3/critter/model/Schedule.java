@@ -18,8 +18,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.MapsId;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 import com.udacity.jdnd.course3.critter.list.EmployeeSkill;
@@ -33,7 +31,7 @@ public class Schedule {
     // https://blog.eyallupu.com/2011/01/hibernatejpa-identity-generators.html
     // https://docs.oracle.com/javaee/5/api/javax/persistence/SequenceGenerator.html
     @SequenceGenerator(name="seq-gen-schedule", sequenceName="SEQ_GEN_SCHEDULE", initialValue=1, allocationSize=10)
-    @GeneratedValue(strategy= GenerationType.TABLE, generator="seq-gen-schedule")
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="seq-gen-schedule")
     private Long id;
 
     @ManyToMany(fetch = FetchType.LAZY)
@@ -51,7 +49,7 @@ public class Schedule {
     // This doesn't work like employeeIds, by employeeIds sprimg-boot save the ids into a new table schedule_employee
     // but it doesn't create new rows by the entity Employee -> OK/GOOD/RIGHT
     // spring-boot adds new rows to the entity Pet -> this is not the expected result -> NOK/BAD/WRONG
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     //@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     @JoinTable(name = "schedule_pet", joinColumns = @JoinColumn(name = "id_schedule"), inverseJoinColumns = @JoinColumn(name = "ids_pet"))
     private List<Pet> petIds;

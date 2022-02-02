@@ -73,7 +73,8 @@ public class ScheduleService {
                 logger.info("[{}] findEmployeeById(id) ID: {}, NAME: {}", methodeName, id, employeeDTO.getName());
                 if (employeeDTO != null) {
                     logger.info("[{}] NOT NULL ID: {}, {}", methodeName, id, employeeDTO.getName());
-                    employeeList.add(employeeService.convertEmployeeDTO2Employee(employeeDTO));
+                    Employee employee = employeeService.convertEmployeeDTO2Employee(employeeDTO);
+                    employeeList.add(employee);
                 }
             }
 
@@ -95,7 +96,8 @@ public class ScheduleService {
                 logger.info("[{}] findPetById(id) ID: {}, NAME: {}, NOTES: {}", methodeName, id, petDTO.getName(), petDTO.getNotes());
                 if (petDTO != null) {
                     logger.info("[{}] NOT NULL ID: {}, NAME: {}", methodeName, id, petDTO.getName());
-                    petList.add(petService.convertPetDTO2Pet(petDTO));
+                    Pet pet = petService.convertPetDTO2Pet(petDTO);
+                    petList.add(pet);
                 }
             }
         }
