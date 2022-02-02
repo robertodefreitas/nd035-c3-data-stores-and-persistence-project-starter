@@ -130,6 +130,9 @@ public class ScheduleService {
     }
 
     public List<ScheduleDTO> findScheduleForPet(long petId){
+        String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
+        logger.info("[{}] ";
+
         List<ScheduleDTO> listScheduleDTO = new ArrayList<ScheduleDTO>();
 
         /**
@@ -140,6 +143,9 @@ public class ScheduleService {
     }
 
     public List<ScheduleDTO> findScheduleForEmployee(long employeeId) {
+        String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
+        logger.info("[{}] ";
+
         List<ScheduleDTO> listScheduleDTO = new ArrayList<ScheduleDTO>();
 
         /**
@@ -150,6 +156,9 @@ public class ScheduleService {
     }
 
     public List<ScheduleDTO> findScheduleForCustomer(long customerId) {
+        String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
+        logger.info("[{}] ";
+
         List<ScheduleDTO> listScheduleDTO = new ArrayList<ScheduleDTO>();
 
         /**
