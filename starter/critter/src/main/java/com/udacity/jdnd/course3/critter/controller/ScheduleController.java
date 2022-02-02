@@ -51,21 +51,21 @@ public class ScheduleController {
         //throw new UnsupportedOperationException();
     }
 
-    @GetMapping("/pet/{petId}")
-    public List<ScheduleDTO> getScheduleForPet(@PathVariable long petId) {
-        String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
-        logger.info("[{}] GET /schedule/pet/{}", methodeName, petId);
-
-        return scheduleService.findScheduleForPet(petId);
-        //throw new UnsupportedOperationException();
-    }
-
     @GetMapping("/employee/{employeeId}")
     public List<ScheduleDTO> getScheduleForEmployee(@PathVariable long employeeId) {
         String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
         logger.info("[{}] GET /schedule/employee/{}", methodeName, employeeId);
 
         return scheduleService.findScheduleForEmployee(employeeId);
+        //throw new UnsupportedOperationException();
+    }
+
+    @GetMapping("/pet/{petId}")
+    public List<ScheduleDTO> getScheduleForPet(@PathVariable long petId) {
+        String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
+        logger.info("[{}] GET /schedule/pet/{}", methodeName, petId);
+
+        return scheduleService.findScheduleForPet(petId);
         //throw new UnsupportedOperationException();
     }
 

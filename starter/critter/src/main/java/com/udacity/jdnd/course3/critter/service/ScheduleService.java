@@ -19,6 +19,7 @@ import com.udacity.jdnd.course3.critter.model.Pet;
 import com.udacity.jdnd.course3.critter.model.Schedule;
 import com.udacity.jdnd.course3.critter.model.user.Employee;
 import com.udacity.jdnd.course3.critter.repository.ScheduleRepository;
+import com.udacity.jdnd.course3.critter.service.user.CustomerService;
 import com.udacity.jdnd.course3.critter.service.user.EmployeeService;
 
 @Service
@@ -34,6 +35,9 @@ public class ScheduleService {
 
     @Autowired
     private PetService petService;
+
+    @Autowired
+    private CustomerService customerService;
 
     public ScheduleDTO saveDTO(ScheduleDTO scheduleDTO){
         String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
@@ -129,9 +133,9 @@ public class ScheduleService {
         return convertListSchedule2ScheduleDTO(listResult);
     }
 
-    public List<ScheduleDTO> findScheduleForPet(long petId){
+    public List<ScheduleDTO> findScheduleForEmployee(long employeeId) {
         String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
-        logger.info("[{}] ";
+        logger.info("[{}] ",methodeName);
 
         List<ScheduleDTO> listScheduleDTO = new ArrayList<ScheduleDTO>();
 
@@ -142,9 +146,9 @@ public class ScheduleService {
         return listScheduleDTO;
     }
 
-    public List<ScheduleDTO> findScheduleForEmployee(long employeeId) {
+    public List<ScheduleDTO> findScheduleForPet(long petId){
         String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
-        logger.info("[{}] ";
+        logger.info("[{}] ",methodeName);
 
         List<ScheduleDTO> listScheduleDTO = new ArrayList<ScheduleDTO>();
 
@@ -157,7 +161,7 @@ public class ScheduleService {
 
     public List<ScheduleDTO> findScheduleForCustomer(long customerId) {
         String methodeName = new Object(){}.getClass().getEnclosingMethod().getName();
-        logger.info("[{}] ";
+        logger.info("[{}] ",methodeName);
 
         List<ScheduleDTO> listScheduleDTO = new ArrayList<ScheduleDTO>();
 
